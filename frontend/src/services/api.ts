@@ -6,10 +6,16 @@ const API_BASE = import.meta.env.VITE_API_BASE ?? ''
 export async function getServerConfig(): Promise<ServerConfig> {
   const res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(10_000) })
   if (!res.ok) throw new Error(`Health check failed: ${res.status}`)
-  const data = (await res.json()) as { status?: string; openai_configured?: boolean; openai_model?: string }
+  const data = (await res.json()) as {
+    status?: string
+    openai_configured?: boolean
+    openai_model?: string
+    tmdb_configured?: boolean
+  }
   return {
     openaiKeyConfigured: Boolean(data.openai_configured),
     openaiModel: data.openai_model,
+    tmdbKeyConfigured: Boolean(data.tmdb_configured),
   }
 }
 
@@ -26,16 +32,22 @@ export interface AiMoviesResponse {
   token_usage: TokenUsage
 }
 
-export async function fetchMovies(params: {
-  hindi_only?: boolean
-  pages?: number
-  source?: 'auto' | 'csv' | 'tmdb'
-  tmdbApiKey?: string
-} = {}): Promise<MoviesResponse> {
+export async function fetchMovies(
+  params: {
+    hindi_only?: boolean
+    pages?: number
+    source?: 'auto' | 'csv' | 'tmdb'
+    tmdbApiKey?: string
+    era?: Era
+    difficulty?: PopularityTier
+  } = {},
+): Promise<MoviesResponse> {
   const query = new URLSearchParams()
   if (params.hindi_only) query.set('hindi_only', 'true')
   if (params.pages) query.set('pages', String(params.pages))
   if (params.source) query.set('source', params.source)
+  if (params.era && params.era !== 'all') query.set('era', params.era)
+  if (params.difficulty) query.set('difficulty', params.difficulty)
 
   const headers: Record<string, string> = {}
   if (params.tmdbApiKey) headers['X-TMDB-Key'] = params.tmdbApiKey
@@ -54,6 +66,8 @@ export async function generateAiMovies(params: {
   batch_size?: number
   openaiApiKey?: string
   tmdbApiKey?: string
+  /** Movie IDs recently played — backend will exclude them from TMDB results */
+  exclude_ids?: string[]
 }): Promise<AiMoviesResponse> {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -67,6 +81,7 @@ export async function generateAiMovies(params: {
     era: params.era,
     language: params.language,
     batch_size: params.batch_size ?? 15,
+    exclude_ids: params.exclude_ids ?? [],
   }
 
   const res = await fetch(`${API_BASE}/api/movies/ai-generate`, {
@@ -80,4 +95,47 @@ export async function generateAiMovies(params: {
     throw new Error((err as { error?: string }).error || `API error ${res.status}`)
   }
   return res.json() as Promise<AiMoviesResponse>
+}
+
+export interface RecordPlayedParams {
+  movie_id: string
+  title: string
+  year?: number | null
+  language?: string
+  difficulty?: string
+  source?: string
+  session_id?: string
+  action: 'got_it' | 'skipped' | 'timeout'
+  played_at?: number
+}
+
+/**
+ * Record a played movie in the server-side SQLite database.
+ * Fire-and-forget — failures are logged but don't affect gameplay.
+ */
+export async function recordPlayedMovie(params: RecordPlayedParams): Promise<void> {
+  try {
+    await fetch(`${API_BASE}/api/history/record`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params),
+      signal: AbortSignal.timeout(5_000),
+    })
+  } catch {
+    // Non-critical: ignore network errors for history recording
+  }
+}
+
+export async function getServerPlayedIds(daysBack = 30): Promise<string[]> {
+  try {
+    const res = await fetch(
+      `${API_BASE}/api/history/played-ids?days_back=${daysBack}&actions=got_it`,
+      { signal: AbortSignal.timeout(5_000) },
+    )
+    if (!res.ok) return []
+    const data = (await res.json()) as { ids: string[] }
+    return data.ids ?? []
+  } catch {
+    return []
+  }
 }

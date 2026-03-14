@@ -1,9 +1,9 @@
 /** Shared TypeScript types for Charades */
 
 export interface AiHints {
-  tagline?: string
-  actor_clue?: string
-  famous_dialogue?: string
+  tagline?: string | null
+  actor_clue?: string | null
+  famous_dialogue?: string | null
 }
 
 export interface Movie {
@@ -13,6 +13,8 @@ export interface Movie {
   language: string
   original_language: string
   popularity: number
+  vote_count?: number
+  word_count?: number
   poster_path: string | null
   source: 'tmdb' | 'csv' | 'ai'
   era: '90s' | '2000s' | '2010s' | '2020s' | 'unknown'
@@ -30,6 +32,7 @@ export interface TokenUsage {
 export interface ServerConfig {
   openaiKeyConfigured: boolean
   openaiModel?: string
+  tmdbKeyConfigured?: boolean
 }
 
 export type Era = 'all' | '90s' | '2000s' | '2010s' | '2020s'

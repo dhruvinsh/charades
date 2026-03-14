@@ -135,6 +135,7 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
   const [showOpenAIKey, setShowOpenAIKey] = useState(false)
   const hasCustomOpenAIKey = (settings.openaiApiKey ?? '').trim().length > 0
   const hasOpenAI = hasCustomOpenAIKey || (serverConfig?.openaiKeyConfigured ?? false)
+  const hasTmdb = (settings.tmdbApiKey ?? '').trim().length > 0 || (serverConfig?.tmdbKeyConfigured ?? false)
   const usage = aiTokenUsage ?? { totalPrompt: 0, totalCompletion: 0 }
   const estimatedCost = estimateCost(usage.totalPrompt, usage.totalCompletion)
 
@@ -270,7 +271,17 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
             <div className="space-y-3">
               {serverConfig?.openaiKeyConfigured && !hasCustomOpenAIKey && (
                 <p className="text-xs text-emerald-400/90">
-                  Using server-configured OpenAI key. Override below if needed.
+                  Server-configured OpenAI key active. Override below if needed.
+                </p>
+              )}
+              {hasOpenAI && hasTmdb && (
+                <p className="text-xs text-violet-400/90">
+                  AI+TMDB mode: one TMDB batch call + one AI hints call per refresh — efficient!
+                </p>
+              )}
+              {hasOpenAI && !hasTmdb && (
+                <p className="text-xs text-amber-400/90">
+                  AI-only mode: AI generates titles validated against offline CSV.
                 </p>
               )}
               <div className="flex gap-2">
@@ -344,9 +355,11 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
               </div>
             </div>
             <p className="text-xs text-slate-500 mt-1.5">
-              {hasOpenAI
-                ? 'OpenAI curates movies by difficulty and adds richer hints. TMDB or CSV validates titles.'
-                : 'Set an OpenAI key to use the AI game engine. Keys stored locally only.'}
+              {hasOpenAI && hasTmdb
+                ? 'TMDB provides validated movies; AI adds curated hints — minimal API calls.'
+                : hasOpenAI
+                  ? 'AI generates movie suggestions validated against offline CSV. Add TMDB key for live data.'
+                  : 'Set an OpenAI key to enable the AI engine. Keys stored in your browser only.'}
             </p>
           </SettingRow>
 
@@ -385,7 +398,9 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
             </div>
             <p className="text-xs text-slate-500">
               {settings.tmdbApiKey ? (
-                <span className="text-emerald-400">Key set — TMDB will be used as data source.</span>
+                <span className="text-emerald-400">Client key set — TMDB live data enabled.</span>
+              ) : serverConfig?.tmdbKeyConfigured ? (
+                <span className="text-emerald-400/80">Server TMDB key active — live data enabled.</span>
               ) : (
                 <>
                   No key set — using offline CSV fallback.{' '}

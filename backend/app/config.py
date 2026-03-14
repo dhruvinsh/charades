@@ -29,6 +29,7 @@ class Config:
     OPENAI_MODEL: str = field(
         default_factory=lambda: os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
     )
+    SQLITE_DB_PATH: str = field(default_factory=lambda: os.environ.get("SQLITE_DB_PATH", ""))
     FLASK_ENV: str = field(default_factory=lambda: os.environ.get("FLASK_ENV", "production"))
     CORS_ORIGINS: str = field(
         default_factory=lambda: os.environ.get("CORS_ORIGINS", "http://localhost:5173")

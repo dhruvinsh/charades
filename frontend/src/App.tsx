@@ -9,12 +9,13 @@ import { useTimer } from '@/hooks/useTimer'
 import { useGameStore } from '@/store/gameStore'
 import { recordPlayed } from '@/db/dexie'
 import { consumeQueueMovie, rotateQueueMovie } from '@/services/localMovieCache'
-import { getServerConfig } from '@/services/api'
+import { getServerConfig, recordPlayedMovie } from '@/services/api'
+import type { Movie } from '@/types'
 
 export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const { loading, error, source, totalMovies, refresh } = useMovies()
-  const { playStart } = useTimer()
+  const { playStart, playGotIt } = useTimer()
   const timedOutMarkerRef = useRef<string | null>(null)
 
   const {
@@ -35,6 +36,25 @@ export default function App() {
       .catch(() => setServerConfig(null))
   }, [setServerConfig])
 
+  /** Fire-and-forget: record to both local IndexedDB and server SQLite */
+  const trackMovie = useCallback(
+    (movie: Movie, action: 'got_it' | 'skipped' | 'timeout') => {
+      recordPlayed(movie.id, game.sessionId, action).catch(console.error)
+      recordPlayedMovie({
+        movie_id: movie.id,
+        title: movie.title,
+        year: movie.year,
+        language: movie.language,
+        difficulty: movie.difficulty,
+        source: movie.source,
+        session_id: game.sessionId,
+        action,
+        played_at: Date.now(),
+      })
+    },
+    [game.sessionId],
+  )
+
   const handleGenerate = useCallback(async () => {
     if (useGameStore.getState().moviePool.length === 0) {
       await refresh()
@@ -49,24 +69,26 @@ export default function App() {
       if (activeCacheKey) {
         rotateQueueMovie(activeCacheKey, game.currentMovie.id)
       }
-      recordPlayed(game.currentMovie.id, game.sessionId).catch(console.error)
+      trackMovie(game.currentMovie, 'skipped')
     }
     skipMovie()
-  }, [activeCacheKey, game, skipMovie])
+  }, [activeCacheKey, game, skipMovie, trackMovie])
 
   const handleGotIt = useCallback(() => {
     if (game.currentMovie) {
       if (activeCacheKey) {
         consumeQueueMovie(activeCacheKey, game.currentMovie.id)
       }
-      recordPlayed(game.currentMovie.id, game.sessionId).catch(console.error)
+      trackMovie(game.currentMovie, 'got_it')
     }
+    playGotIt()
     nextMovie()
     if (useGameStore.getState().moviePool.length === 0) {
       refresh().catch(console.error)
     }
-  }, [activeCacheKey, game, nextMovie, refresh])
+  }, [activeCacheKey, game, nextMovie, refresh, trackMovie, playGotIt])
 
+  // Handle timer running out
   useEffect(() => {
     if (game.phase === 'playing') {
       timedOutMarkerRef.current = null
@@ -80,10 +102,11 @@ export default function App() {
     timedOutMarkerRef.current = marker
 
     consumeQueueMovie(activeCacheKey, game.currentMovie.id)
+    trackMovie(game.currentMovie, 'timeout')
     if (useGameStore.getState().moviePool.length === 0) {
       refresh().catch(console.error)
     }
-  }, [activeCacheKey, game, refresh])
+  }, [activeCacheKey, game, refresh, trackMovie])
 
   const handleReset = useCallback(() => {
     resetGame()
