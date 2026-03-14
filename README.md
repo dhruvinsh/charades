@@ -55,6 +55,39 @@ open http://localhost:5000
 
 A single container runs the full stack: the Dockerfile builds the Vite frontend (Node 22) in a first stage, then copies the `dist/` into the Python image where Gunicorn + Flask serve both the API and the SPA.
 
+## Reverse Proxy with Traefik
+
+If you run Traefik with the Docker provider, Charades must be attached to Traefik's
+Docker network and have explicit router/service labels.
+
+1. Ensure your Traefik stack uses an external Docker network (example: `proxy`).
+2. Ensure Traefik and Charades are both attached to that same network.
+3. Copy and edit env values:
+
+```bash
+cp .env.example .env
+# set TRAEFIK_HOST, TRAEFIK_DOCKER_NETWORK, TRAEFIK_CERTRESOLVER, etc.
+```
+
+4. Start Charades with the Traefik override:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.traefik.yml up --build -d
+```
+
+This creates:
+- `charades` router on `websecure` for `Host(\`$TRAEFIK_HOST\`)`
+- TLS cert resolver via `TRAEFIK_CERTRESOLVER`
+- backend service target on container port `5000`
+- optional `web` entrypoint redirect to HTTPS
+
+If `charades.example.com` still does not resolve, verify DNS points to the Traefik
+host and that the external Docker network exists:
+
+```bash
+docker network ls | grep proxy
+```
+
 ## Local Development
 
 ### Prerequisites

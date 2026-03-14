@@ -1,0 +1,28 @@
+services:
+  charades:
+    # When running behind Traefik, attach the service to the shared proxy network.
+    networks:
+      - default
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=${TRAEFIK_DOCKER_NETWORK:-proxy}
+
+      # HTTPS router (primary)
+      - traefik.http.routers.charades.rule=Host(`${TRAEFIK_HOST:-charades.example.com}`)
+      - traefik.http.routers.charades.entrypoints=${TRAEFIK_ENTRYPOINTS:-websecure}
+      - traefik.http.routers.charades.tls=true
+      - traefik.http.routers.charades.tls.certresolver=${TRAEFIK_CERTRESOLVER:-letsencrypt}
+      - traefik.http.services.charades.loadbalancer.server.port=5000
+
+      # Optional HTTP -> HTTPS redirect on the web entrypoint.
+      - traefik.http.middlewares.charades-https-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.charades-http.rule=Host(`${TRAEFIK_HOST:-charades.example.com}`)
+      - traefik.http.routers.charades-http.entrypoints=web
+      - traefik.http.routers.charades-http.middlewares=charades-https-redirect
+      - traefik.http.routers.charades-http.service=noop@internal
+
+networks:
+  proxy:
+    external: true
+    name: ${TRAEFIK_DOCKER_NETWORK:-proxy}
