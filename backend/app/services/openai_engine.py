@@ -63,7 +63,7 @@ def generate_movie_batch(
     with httpx.Client(timeout=30.0) as client:
         resp = client.post(OPENAI_CHAT_URL, json=payload, headers=headers)
         resp.raise_for_status()
-    data = resp.json()
+        data = resp.json()
     usage = data.get("usage", {})
     token_usage = {
         "prompt_tokens": usage.get("prompt_tokens", 0),
