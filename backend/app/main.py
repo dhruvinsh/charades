@@ -6,7 +6,7 @@ import logging
 from pathlib import Path
 
 from dotenv import load_dotenv
-from flask import Flask, send_from_directory
+from flask import Flask, Response, send_from_directory
 from flask_cors import CORS
 
 from app.config import Config
@@ -54,7 +54,7 @@ def create_app(config: Config | None = None) -> Flask:
 
         @app.route("/", defaults={"path": ""})
         @app.route("/<path:path>")
-        def serve_spa(path: str):  # type: ignore[return]
+        def serve_spa(path: str) -> Response:
             file_path = _FRONTEND_DIST / path
             if path and file_path.exists():
                 return send_from_directory(str(_FRONTEND_DIST), path)
