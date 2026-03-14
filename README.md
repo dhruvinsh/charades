@@ -50,10 +50,10 @@ cp .env.example .env
 docker compose up --build -d
 
 # 4. Open
-open http://localhost
+open http://localhost:5000
 ```
 
-The backend is not exposed directly to the host. All traffic routes through Nginx on port 80 — `/api/*` requests are proxied to the backend container internally.
+A single container runs the full stack: the Dockerfile builds the Vite frontend (Node 22) in a first stage, then copies the `dist/` into the Python image where Gunicorn + Flask serve both the API and the SPA.
 
 ## Local Development
 
@@ -143,11 +143,10 @@ TMDB API key resolution order: `X-TMDB-Key` request header → `TMDB_API_KEY` en
 
 ## Releases
 
-Docker images are automatically published to GHCR on semver tags (`v*`). Both `linux/amd64` and `linux/arm64` platforms are built.
+Docker image is automatically published to GHCR on semver tags (`v*`). Both `linux/amd64` and `linux/arm64` platforms are built.
 
 ```bash
-docker pull ghcr.io/dhruvinsh/charades-backend:latest
-docker pull ghcr.io/dhruvinsh/charades-frontend:latest
+docker pull ghcr.io/dhruvinsh/charades:latest
 ```
 
 Tags follow the pattern `<major>.<minor>.<patch>`, `<major>.<minor>`, `<major>`, and `latest`. Pre-release tags (containing `-rc`, `-beta`, or `-alpha`) are marked as pre-releases on GitHub.
@@ -163,13 +162,12 @@ git push origin v2.0.0
 
 ```
 charades/
+├── Dockerfile                   # multi-stage: Node build → Python runtime
+├── docker-compose.yml           # single-service compose
 ├── movies.csv                   # bundled fallback — 400 Bollywood titles
-├── docker-compose.yml
-├── docker/nginx.conf
 ├── .env.example
 │
 ├── backend/
-│   ├── Dockerfile
 │   ├── pyproject.toml           # charades v2.0.0, Python ≥3.12
 │   ├── gunicorn.conf.py
 │   ├── wsgi.py                  # WSGI entry + auto-rebuild frontend
@@ -186,7 +184,6 @@ charades/
 │       └── test_routes.py       # 13 pytest tests
 │
 ├── frontend/
-│   ├── Dockerfile
 │   ├── package.json             # charades-frontend, Vite 7, React 19
 │   ├── vite.config.ts           # PWA manifest, Workbox, dev proxy
 │   └── src/
@@ -207,7 +204,7 @@ charades/
 │
 └── .github/workflows/
     ├── ci.yml                   # lint + typecheck + build on every push
-    └── release.yml              # build & push to GHCR on v* tags
+    └── release.yml              # build & push single image to GHCR on v* tags
 ```
 
 ## Third Party

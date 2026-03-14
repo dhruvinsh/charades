@@ -1,0 +1,40 @@
+# ── Secrets / local config ────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+.git/
+.gitignore
+.github/
+
+# ── Docs / repo metadata ──────────────────────────────────────────────────────
+docs/
+README.md
+LICENSE
+
+# ── Python artefacts (backend) ────────────────────────────────────────────────
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.py[cod]
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.ruff_cache/
+backend/tests/
+
+# ── Node artefacts (frontend) ─────────────────────────────────────────────────
+# node_modules is rebuilt inside the builder stage
+frontend/node_modules/
+# dist is rebuilt inside the builder stage
+frontend/dist/
+frontend/.vite/
+
+# ── OS / editor noise ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+*.swp
+*.swo
