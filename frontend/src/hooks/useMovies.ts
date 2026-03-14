@@ -64,7 +64,7 @@ export function useMovies(): UseMoviesReturn {
   const [error, setError] = useState<string | null>(null)
   const [source, setSource] = useState<'tmdb' | 'csv' | 'ai' | null>(null)
   const [totalMovies, setTotalMovies] = useState(0)
-  const { settings, setMoviePool } = useGameStore()
+  const { settings, setMoviePool, serverConfig } = useGameStore()
   const settingsRef = useRef(settings)
   settingsRef.current = settings
 
@@ -84,9 +84,10 @@ export function useMovies(): UseMoviesReturn {
   const refresh = useCallback(async () => {
     setLoading(true)
     setError(null)
-    const openaiKey = (settings.openaiApiKey ?? '').trim()
+    const customOpenAIKey = (settings.openaiApiKey ?? '').trim()
+    const useAi = customOpenAIKey.length > 0 || (serverConfig?.openaiKeyConfigured ?? false)
     try {
-      if (openaiKey) {
+      if (useAi) {
         try {
           const res = await generateAiMovies({
             model: settings.openaiModel || 'gpt-4.1-mini',
@@ -94,7 +95,7 @@ export function useMovies(): UseMoviesReturn {
             era: settings.era,
             language: settings.languageFilter,
             batch_size: 15,
-            openaiApiKey: openaiKey,
+            openaiApiKey: customOpenAIKey || undefined,
             tmdbApiKey: (settings.tmdbApiKey ?? '').trim() || undefined,
           })
           await cacheMovies(res.movies)
@@ -138,6 +139,7 @@ export function useMovies(): UseMoviesReturn {
     settings.languageFilter,
     settings.popularityTier,
     settings.era,
+    serverConfig?.openaiKeyConfigured,
     loadAndFilter,
     addTokenUsage,
   ])
@@ -171,7 +173,7 @@ export function useMovies(): UseMoviesReturn {
 
   useEffect(() => {
     refresh().catch(console.error)
-  }, [settings.tmdbApiKey, settings.openaiApiKey]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [settings.tmdbApiKey, settings.openaiApiKey, serverConfig?.openaiKeyConfigured]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return { loading, error, source, totalMovies, refresh }
 }

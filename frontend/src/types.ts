@@ -27,6 +27,11 @@ export interface TokenUsage {
   model: string
 }
 
+export interface ServerConfig {
+  openaiKeyConfigured: boolean
+  openaiModel?: string
+}
+
 export type Era = 'all' | '90s' | '2000s' | '2010s' | '2020s'
 export type PopularityTier = 'easy' | 'medium' | 'hard'
 export type LanguageFilter = 'all' | 'hindi'

@@ -130,10 +130,11 @@ const SettingRow: FC<{ icon: React.ReactNode; label: string; children: React.Rea
 )
 
 const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMovies }) => {
-  const { settings, updateSettings, aiTokenUsage, resetTokenUsage } = useGameStore()
+  const { settings, updateSettings, aiTokenUsage, resetTokenUsage, serverConfig } = useGameStore()
   const [showKey, setShowKey] = useState(false)
   const [showOpenAIKey, setShowOpenAIKey] = useState(false)
-  const hasOpenAI = (settings.openaiApiKey ?? '').trim().length > 0
+  const hasCustomOpenAIKey = (settings.openaiApiKey ?? '').trim().length > 0
+  const hasOpenAI = hasCustomOpenAIKey || (serverConfig?.openaiKeyConfigured ?? false)
   const usage = aiTokenUsage ?? { totalPrompt: 0, totalCompletion: 0 }
   const estimatedCost = estimateCost(usage.totalPrompt, usage.totalCompletion)
 
@@ -267,13 +268,22 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
           {/* AI Game Engine */}
           <SettingRow icon={<Sparkles className="w-4 h-4" />} label="AI Game Engine">
             <div className="space-y-3">
+              {serverConfig?.openaiKeyConfigured && !hasCustomOpenAIKey && (
+                <p className="text-xs text-emerald-400/90">
+                  Using server-configured OpenAI key. Override below if needed.
+                </p>
+              )}
               <div className="flex gap-2">
                 <div className="relative flex-1">
                   <input
                     type={showOpenAIKey ? 'text' : 'password'}
                     value={settings.openaiApiKey ?? ''}
                     onChange={(e) => updateSettings({ openaiApiKey: e.target.value.trim() })}
-                    placeholder="OpenAI API key (optional)"
+                    placeholder={
+                      serverConfig?.openaiKeyConfigured
+                        ? 'Override with your own key (optional)'
+                        : 'OpenAI API key (optional)'
+                    }
                     spellCheck={false}
                     autoComplete="off"
                     className="w-full px-3 py-1.5 pr-9 rounded-lg text-sm bg-slate-700/50 border border-slate-600/50 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 font-mono"
@@ -287,12 +297,12 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
                     {showOpenAIKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
-                {(settings.openaiApiKey ?? '').trim() && (
+                {hasCustomOpenAIKey && (
                   <button
                     type="button"
                     onClick={() => updateSettings({ openaiApiKey: '' })}
                     className="px-3 py-1.5 rounded-lg text-sm bg-slate-700/50 border border-slate-600/50 text-slate-400 hover:text-rose-400 hover:border-rose-500/40 transition-colors"
-                    title="Clear OpenAI key"
+                    title="Clear OpenAI key (fall back to server key)"
                   >
                     <X className="w-4 h-4" />
                   </button>

@@ -1,7 +1,17 @@
 /** Flask API client */
-import type { Era, LanguageFilter, Movie, PopularityTier, TokenUsage } from '@/types'
+import type { Era, LanguageFilter, Movie, PopularityTier, ServerConfig, TokenUsage } from '@/types'
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? ''
+
+export async function getServerConfig(): Promise<ServerConfig> {
+  const res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(10_000) })
+  if (!res.ok) throw new Error(`Health check failed: ${res.status}`)
+  const data = (await res.json()) as { status?: string; openai_configured?: boolean; openai_model?: string }
+  return {
+    openaiKeyConfigured: Boolean(data.openai_configured),
+    openaiModel: data.openai_model,
+  }
+}
 
 interface MoviesResponse {
   movies: Movie[]

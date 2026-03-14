@@ -3,7 +3,7 @@
  */
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import type { GameSettings, GameState, Movie } from '@/types'
+import type { GameSettings, GameState, Movie, ServerConfig } from '@/types'
 import { DEFAULT_SETTINGS } from '@/types'
 
 interface GameStore {
@@ -12,9 +12,11 @@ interface GameStore {
   moviePool: Movie[]
   poolIndex: number
   aiTokenUsage: { totalPrompt: number; totalCompletion: number }
+  serverConfig: ServerConfig | null
 
   // Settings actions
   updateSettings: (patch: Partial<GameSettings>) => void
+  setServerConfig: (config: ServerConfig | null) => void
 
   // Token usage (AI cost counter)
   addTokenUsage: (prompt: number, completion: number) => void
@@ -54,9 +56,14 @@ export const useGameStore = create<GameStore>()(
       moviePool: [],
       poolIndex: 0,
       aiTokenUsage: { totalPrompt: 0, totalCompletion: 0 },
+      serverConfig: null,
 
       updateSettings: (patch) => {
         set((s) => ({ settings: { ...s.settings, ...patch } }))
+      },
+
+      setServerConfig: (config) => {
+        set({ serverConfig: config })
       },
 
       addTokenUsage: (prompt, completion) => {

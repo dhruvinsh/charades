@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import MovieCard from '@/components/MovieCard'
 import Timer from '@/components/Timer'
@@ -8,6 +8,7 @@ import { useMovies } from '@/hooks/useMovies'
 import { useTimer } from '@/hooks/useTimer'
 import { useGameStore } from '@/store/gameStore'
 import { recordPlayed } from '@/db/dexie'
+import { getServerConfig } from '@/services/api'
 
 export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
@@ -23,7 +24,14 @@ export default function App() {
     skipMovie,
     nextMovie,
     resetGame,
+    setServerConfig,
   } = useGameStore()
+
+  useEffect(() => {
+    getServerConfig()
+      .then(setServerConfig)
+      .catch(() => setServerConfig(null))
+  }, [setServerConfig])
 
   const handleGenerate = useCallback(() => {
     advancePool()

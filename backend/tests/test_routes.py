@@ -41,7 +41,9 @@ def test_health_returns_200(client: FlaskClient) -> None:
 
 def test_health_returns_ok_status(client: FlaskClient) -> None:
     data = client.get("/health").get_json()
-    assert data == {"status": "ok"}
+    assert data["status"] == "ok"
+    assert "openai_configured" in data
+    assert isinstance(data["openai_configured"], bool)
 
 
 # ---------------------------------------------------------------------------
