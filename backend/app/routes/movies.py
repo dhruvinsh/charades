@@ -206,9 +206,11 @@ def ai_generate() -> tuple:  # type: ignore[type-arg]
                 validated.append(movie)
 
     # If we got too few, still return what we have (frontend can fall back to GET /movies)
-    return jsonify({
-        "movies": validated,
-        "source": "ai",
-        "total": len(validated),
-        "token_usage": token_usage,
-    }), 200
+    return jsonify(
+        {
+            "movies": validated,
+            "source": "ai",
+            "total": len(validated),
+            "token_usage": token_usage,
+        }
+    ), 200

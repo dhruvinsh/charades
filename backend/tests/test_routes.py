@@ -165,7 +165,11 @@ def test_ai_generate_accepts_key_and_returns_shape(client: FlaskClient) -> None:
             "title": "War",
             "year": 2019,
             "language": "hi",
-            "hints": {"tagline": "A spy thriller", "actor_clue": "Hrithik", "famous_dialogue": None},
+            "hints": {
+                "tagline": "A spy thriller",
+                "actor_clue": "Hrithik",
+                "famous_dialogue": None,
+            },
         },
     ]
     token_usage = {"prompt_tokens": 100, "completion_tokens": 200, "model": "gpt-4.1-mini"}

@@ -50,7 +50,10 @@ def generate_movie_batch(
     payload: dict[str, Any] = {
         "model": model,
         "messages": [
-            {"role": "system", "content": "You output only valid JSON arrays. No markdown, no explanation."},
+            {
+                "role": "system",
+                "content": "You output only valid JSON arrays. No markdown, no explanation.",
+            },
             {"role": "user", "content": prompt},
         ],
         "temperature": 0.7,
@@ -101,15 +104,17 @@ def generate_movie_batch(
         hints = item.get("hints")
         if not isinstance(hints, dict):
             hints = {}
-        movies.append({
-            "title": title,
-            "year": year,
-            "language": (item.get("language") or "hi").strip() or "hi",
-            "hints": {
-                "tagline": (hints.get("tagline") or "").strip() or None,
-                "actor_clue": (hints.get("actor_clue") or "").strip() or None,
-                "famous_dialogue": (hints.get("famous_dialogue") or "").strip() or None,
-            },
-        })
+        movies.append(
+            {
+                "title": title,
+                "year": year,
+                "language": (item.get("language") or "hi").strip() or "hi",
+                "hints": {
+                    "tagline": (hints.get("tagline") or "").strip() or None,
+                    "actor_clue": (hints.get("actor_clue") or "").strip() or None,
+                    "famous_dialogue": (hints.get("famous_dialogue") or "").strip() or None,
+                },
+            }
+        )
     logger.info("OpenAI generated %d movie suggestions (model=%s)", len(movies), model)
     return movies, token_usage
