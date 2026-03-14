@@ -84,7 +84,6 @@ def get_movies() -> tuple:  # type: ignore[type-arg]
     sort_by = request.args.get("sort_by", "popularity.desc")
     source_param = request.args.get("source", "auto")
     era = request.args.get("era", "all")
-    difficulty = request.args.get("difficulty", "medium")
 
     movies: list[dict[str, Any]] = []
     source_used = "csv"
