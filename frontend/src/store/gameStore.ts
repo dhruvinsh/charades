@@ -34,6 +34,9 @@ interface GameStore {
   resetGame: () => void
   tickTimer: () => void
   skipMovie: () => void
+  /** Transition to 'between' phase after a correct guess (keeps current movie visible). */
+  gotItTransition: () => void
+  /** Advance to the next movie from the 'between' phase and start playing. */
   nextMovie: () => void
 }
 
@@ -161,18 +164,26 @@ export const useGameStore = create<GameStore>()(
         })
       },
 
+      gotItTransition: () => {
+        const { game } = get()
+        if (game.phase !== 'playing') return
+        // Pause on the celebration screen; keep currentMovie so it's visible.
+        set((s) => ({ game: { ...s.game, phase: 'between' } }))
+      },
+
       nextMovie: () => {
         const { game, settings, moviePool } = get()
-        if (game.phase !== 'playing') return
+        if (game.phase !== 'between') return
 
+        // Remove the just-guessed movie (currently at pool[0]) and advance.
         const remainingPool = moviePool.length > 0 ? moviePool.slice(1) : moviePool
-        const nextMovie = remainingPool[0] ?? null
+        const upcoming = remainingPool[0] ?? null
         set({
           moviePool: remainingPool,
           game: {
             ...game,
-            phase: nextMovie ? 'playing' : 'finished',
-            currentMovie: nextMovie,
+            phase: upcoming ? 'playing' : 'finished',
+            currentMovie: upcoming,
             timeLeft: settings.timerSeconds,
             totalMoviesSeen: game.totalMoviesSeen + 1,
           },

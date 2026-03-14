@@ -26,6 +26,7 @@ export default function App() {
     startGame,
     skipMovie,
     nextMovie,
+    gotItTransition,
     resetGame,
     setServerConfig,
   } = useGameStore()
@@ -82,11 +83,17 @@ export default function App() {
       trackMovie(game.currentMovie, 'got_it')
     }
     playGotIt()
+    // Pause on celebration screen — player confirms when ready for the next movie
+    gotItTransition()
+  }, [activeCacheKey, game, gotItTransition, trackMovie, playGotIt])
+
+  const handleNextMovie = useCallback(() => {
     nextMovie()
+    playStart()
     if (useGameStore.getState().moviePool.length === 0) {
       refresh().catch(console.error)
     }
-  }, [activeCacheKey, game, nextMovie, refresh, trackMovie, playGotIt])
+  }, [nextMovie, playStart, refresh])
 
   // Handle timer running out
   useEffect(() => {
@@ -177,6 +184,7 @@ export default function App() {
             onGenerate={handleGenerate}
             onSkip={handleSkip}
             onGotIt={handleGotIt}
+            onNextMovie={handleNextMovie}
             onReset={handleReset}
             moviePoolSize={moviePool.length}
           />

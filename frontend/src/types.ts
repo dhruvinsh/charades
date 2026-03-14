@@ -52,7 +52,8 @@ export interface GameSettings {
 }
 
 export interface GameState {
-  phase: 'idle' | 'playing' | 'paused' | 'finished'
+  /** between = "Got It!" pressed, waiting for player to hit "Next Movie" */
+  phase: 'idle' | 'playing' | 'paused' | 'between' | 'finished'
   currentMovie: Movie | null
   timeLeft: number
   skipsRemaining: number | null
