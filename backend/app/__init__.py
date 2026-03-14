@@ -1,0 +1,1 @@
+"""Charades Flask application package."""

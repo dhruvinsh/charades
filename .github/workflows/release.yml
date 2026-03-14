@@ -1,0 +1,118 @@
+name: Release — Build & Push to GHCR
+
+on:
+  push:
+    tags:
+      - "v*"   # triggers on v1.0.0, v2.1.3-rc1, etc.
+
+permissions:
+  contents: write        # create GitHub releases
+  packages: write        # push to GHCR
+
+jobs:
+  # ── Build & push Docker images ───────────────────────────────────────────────
+  build-and-push:
+    name: Build & Push Docker Images
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - service: backend
+            dockerfile: backend/Dockerfile
+            image: ghcr.io/dhruvinsh/charades-backend
+          - service: frontend
+            dockerfile: frontend/Dockerfile
+            image: ghcr.io/dhruvinsh/charades-frontend
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker metadata (tags + labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ matrix.image }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest
+
+      - name: Build and push ${{ matrix.service }}
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.service }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.service }}
+          platforms: linux/amd64,linux/arm64
+
+  # ── Create GitHub Release ────────────────────────────────────────────────────
+  github-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [build-and-push]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for changelog generation
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -n "$PREV_TAG" ]; then
+            CHANGES=$(git log --pretty=format:"- %s (%h)" "$PREV_TAG"..HEAD)
+          else
+            CHANGES=$(git log --pretty=format:"- %s (%h)" HEAD)
+          fi
+          echo "CHANGES<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "BollyDumb ${{ github.ref_name }}"
+          body: |
+            ## BollyDumb ${{ github.ref_name }}
+
+            ### Docker Images
+            ```
+            docker pull ghcr.io/dhruvinsh/charades-backend:${{ github.ref_name }}
+            docker pull ghcr.io/dhruvinsh/charades-frontend:${{ github.ref_name }}
+            ```
+
+            ### Quick Start
+            ```bash
+            # Clone + configure
+            git clone https://github.com/dhruvinsh/charades.git
+            cd charades
+            cp .env.example .env
+            # Edit .env to add your TMDB_API_KEY
+
+            # Run
+            docker compose up -d
+            # Open http://localhost
+            ```
+
+            ### Changes
+            ${{ steps.changelog.outputs.CHANGES }}
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-beta') || contains(github.ref_name, '-alpha') }}

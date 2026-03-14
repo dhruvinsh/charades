@@ -1,0 +1,401 @@
+MOVIE_ID,MOVIE_TITLE,MOVIE_CAST,MOVIE_RELEASE_YEAR
+1,War,,2019
+2,Kabir Singh,,2019
+3,Uri: The Surgical Strike,,2019
+4,Bharat,,2019
+5,Mission Mangal,,2019
+6,Housefull 4,,2019
+7,Gully Boy,,2019
+8,Total Dhamaal,,2019
+9,Chhichhore,,2019
+10,Super 30,,2019
+11,Dil,,1990
+12,Ghayal,,1990
+13,Aaj Ka Arjun,,1990
+14,Kishen Kanhaiya,,1990
+15,Thanedaar,,1990
+16,Baaghi: A Rebel for Love,,1990
+17,Baap Numbri Beta Dus Numbri,,1990
+18,Police Public,,1990
+19,Ghar Ho To Aisa,,1990
+20,Aashiqui,,1990
+21,Saajan,,1991
+22,Hum,,1991
+23,Saudagar,,1991
+24,Phool Aur Kaante,,1991
+25,Sanam Bewafa,,1991
+26,Sadak,,1991
+27,Akayla,,1991
+28,Narsimha,,1991
+29,Trinetra,,1991
+30,Lamhe,,1991
+31,Andhadhun,,2018
+32,Baaghi 2,,2018
+33,Badhaai Ho,,2018
+34,Hichki,,2018
+35,Pad Man,,2018
+36,Padmaavat,,2018
+37,Race 3,,2018
+38,Sanju,,2018
+39,Simmba,,2018
+40,Thugs of Hindostan,,2018
+41,Bajrangi Bhaijaan,,2015
+42,Prem Ratan Dhan Payo,,2015
+43,Dilwale,,2015
+44,Bajirao Mastani,,2015
+45,Tanu Weds Manu: Returns,,2015
+46,Welcome Back,,2015
+47,ABCD 2,,2015
+48,Dil Dhadakne Do,,2015
+49,Baby,,2015
+50,Piku,,2015
+51,Dhoom 3,,2013
+52,Krrish 3,,2013
+53,Chennai Express,,2013
+54,Yeh Jawaani Hai Deewani,,2013
+55,Ram-Leela,,2013
+56,Bodyguard,,2011
+57,Ra.One,,2011
+58,Don 2,,2011
+59,Ready,,2011
+60,Zindagi Na Milegi Dobara,,2011
+61,Singham,,2011
+62,The Dirty Picture,,2011
+63,Rockstar,,2011
+64,Murder 2,,2011
+65,No One Killed Jessica,,2011
+66,Aa Ab Laut Chalen,,1999
+67,Aarzoo,,1999
+68,Anari No.1,,1999
+69,Arjun Pandit,,1999
+70,Baadshah,,1999
+71,Bade Dilwala,,1999
+72,Bhopal Express,,1999
+73,Biwi No.1,,1999
+74,Chandaal Aatma,,1999
+75,Chehraa,,1999
+76,Daag: The Fire,,1999
+77,Dahek,,1999
+78,Dil Kya Kare,,1999
+79,Dillagi,,1999
+80,Double Gadbad,,1999
+81,Dracula,,1999
+82,Dulhan Banoo Main Teri,,1999
+83,Gair,,1999
+84,Godmother,,1999
+85,Haseena Maan Jaayegi,,1999
+86,Heeralal Pannalal,,1999
+87,Hello Brother,,1999
+88,Hindustan Ki Kasam,,1999
+89,Hogi Pyaar Ki Jeet,,1999
+90,Hote Hote Pyar Ho Gaya,,1999
+91,Hu Tu Tu,,1999
+92,Hum Aapke Dil Mein Rehte Hain,,1999
+93,Hum Dil De Chuke Sanam,,1999
+94,Hum Saath-Saath Hain,,1999
+95,Hum Tum Pe Marte Hain,,1999
+96,International Khiladi,,1999
+97,Jaanam Samjha Karo,,1999
+98,Jaanwar,,1999
+99,Jahan Tum Le Chalo,,1999
+100,Jai Hind,,1999
+101,Kaala Samrajya,,1999
+102,Kachche Dhaage,,1999
+103,Kahani Kismat Ki,,1999
+104,Kartoos,,1999
+105,Kaun,,1999
+106,Khoobsurat,,1999
+107,Khooni Ilaaka: The Prohibited Area,,1999
+108,Khopdi: The Skull,,1999
+109,Kohram,,1999
+110,Laawaris,,1999
+111,Lal Baadshah,,1999
+112,Lo Main Aa Gaya,,1999
+113,Love You Hamesha,,1999
+114,Maa Kasam,,1999
+115,Manchala,,1999
+116,Mann,,1999
+117,Mast,,1999
+118,Mother,,1999
+119,Munnibai,,1999
+120,Naukar Ki Kameez,,1999
+121,Nyaydaata,,1999
+122,Phir Kabhi,,1999
+123,Phool Aur Aag,,1999
+124,Putlibai,,1999
+125,Pyaar Koi Khel Nahin,,1999
+126,Pyaar Mein Kabhi Kabhi,,1999
+127,Rajaji,,1999
+128,Safari,,1999
+129,Samar,,1999
+130,Sangharsh,,1999
+131,Sanyasi Mera Naam,,1999
+132,Sarfarosh,,1999
+133,Sarfarosh-E-Hind,,1999
+134,Sautela,,1999
+135,Shaheed Udham Singh,,1999
+136,Shera,,1999
+137,Shool,,1999
+138,Silsila Hai Pyar Ka,,1999
+139,Sirf Tum,,1999
+140,Sooryavansham,,1999
+141,Split Wide Open,,1999
+142,Taal,,1999
+143,Tabaahi: The Destroyer,,1999
+144,Thakshak,,1999
+145,Trishakti,,1999
+146,Vaastav: The Reality,,1999
+147,Yeh Hai Mumbai Meri Jaan,,1999
+148,Zulmi,,1999
+149,Aatank,,1996
+150,Agni Sakshi,,1996
+151,Aisi Bhi Kya Jaldi Hai,,1996
+152,Ajay,,1996
+153,Angaara,,1996
+154,Apne Dam Par,,1996
+155,Army,,1996
+156,Aur Ek Prem Kahani,,1996
+157,Aurat Aurat Aurat,,1996
+158,Bal Bramhachari,,1996
+159,Bambai Ka Babu,,1996
+160,Bandish,,1996
+161,Beqabu,,1996
+162,Bhairavi,,1996
+163,Bhishma,,1996
+164,Chaahat,,1996
+165,Chall,,1996
+166,Chhota Sa Ghar,,1996
+167,Chhote Sarkar,,1996
+168,Daanveer,,1996
+169,Daraar,,1996
+170,Dastak,,1996
+171,Dil Tera Deewana,,1996
+172,Diljale,,1996
+173,Duniyaa Jhukti Hai,,1996
+174,Dushman Duniya Ka,,1996
+175,Dushmani: A Violent Love Story,,1996
+176,Ek Anari Do Khiladi,,1996
+177,Ek Tha Raja,,1996
+178,English Babu Desi Mem,,1996
+179,Fareb,,1996
+180,Fire,,1996
+181,Ghatak,,1996
+182,Gehra Raaz,,1996
+183,Hahakaar,,1996
+184,Halo,,1996
+185,Hasina Aur Nagina,,1996
+186,Himmat,,1996
+187,Himmatvar,,1996
+188,Hukumnama,,1996
+189,Hum Hain Khalnayak,,1996
+190,Hum Hain Premi,,1996
+191,Is Raat Ki Subah Nahin,,1996
+192,Jaan,,1996
+193,Jagannath,,1996
+194,Jay Baba Pashupatinath,,1996
+195,Jeet,,1996
+196,Jung,,1996
+197,Jurmana,,1996
+198,Kalinga,,1996
+199,Khamoshi: The Musical,,1996
+200,Khiladiyon Ka Khiladi,,1996
+201,Khilona,,1996
+202,Khoon Ki Pyasi,,1996
+203,Krishna,,1996
+204,Laalchee,,1996
+205,Loafer,,1996
+206,Maachis,,1996
+207,Maahir,,1996
+208,Mafia,,1996
+209,Majhdhaar,,1996
+210,Masoom,,1996
+211,Megha,,1996
+212,Mr. Bechara,,1996
+213,Muqadama,,1996
+214,Muqaddar,,1996
+215,Muthi Bhar Zameen,,1996
+216,Namak,,1996
+217,Nirbhay,,1996
+218,Papa Kehte Hai,,1996
+219,Papi Gudia,,1996
+220,Prem Granth,,1996
+221,Raja Aur Rangeeli,,1996
+222,Raja Hindustani,,1996
+223,Raja Ki Aayegi Baraat,,1996
+224,Rajkumar,,1996
+225,Rakshak,,1996
+226,Ram Aur Shyam,,1996
+227,Rangbaaz,,1996
+228,Return of Jewel Thief,,1996
+229,Saajan Chale Sasural,,1996
+230,Sanshodhan,,1996
+231,Sapoot,,1996
+232,Sardari Begum,,1996
+233,Shastra,,1996
+234,Shikaar,,1996
+235,Shohrat,,1996
+236,Smuggler,,1996
+237,Spot Boy,,1996
+238,Talaashi,,1996
+239,Tere Mere Sapne,,1996
+240,The Making of the Mahatma,,1996
+241,The Square Circle,,1996
+242,Tu Chor Main Sipahi,,1996
+243,Vijeta,,1996
+244,Vishwasghaat,,1996
+245,Yaaron Ka Yaar,,1996
+246,Yash,,1996
+247,Zordaar,,1996
+248,Dilwale,,1994
+249,Dilwale Dulhania Le Jayenge,,1995
+250,Karan Arjun,,1995
+251,Raja,,1995
+252,Barsaat,,1995
+253,Rangeela,,1995
+254,Coolie No. 1,,1995
+255,Sabse Bada Khiladi,,1995
+256,Trimurti,,1995
+257,Ram Jaane,,1995
+258,Akele Hum Akele Tum,,1995
+259,Brahmastra: Part One – Shiva,,2022
+260,The Kashmir Files,,2022
+261,Bhool Bhulaiyaa 2,,2022
+262,Gangubai Kathiawadi,,2022
+263,Radhe Shyam,,2022
+264,Jugjugg Jeeyo,,2022
+265,Laal Singh Chaddha,,2022
+266,Vikram Vedha,,2022
+267,Samrat Prithviraj,,2022
+268,Liger,,2022
+269,Sooryavanshi,,2021
+270,83,,2021
+271,Antim: The Final Truth,,2021
+272,Bell Bottom,,2021
+273,Chandigarh Kare Aashiqui,,2021
+274,Tadap,,2021
+275,Roohi,,2021
+276,Mumbai Saga,,2021
+277,Bunty Aur Babli 2,,2021
+278,Radhe,,2021
+279,Shershaah,,2021
+280,Sardar Udham,,2021
+281,Atrangi Re,,2021
+282,Haseen Dillruba,,2021
+283,Pathaan,,2023
+284,Jawan,,2023
+285,Animal,,2023
+286,Dunki,,2023
+287,Tiger 3,,2023
+288,Gadar 2,,2023
+289,Adipurush,,2023
+290,Rocky Aur Rani Kii Prem Kahaani,,2023
+291,Zara Hatke Zara Bachke,,2023
+292,OMG 2,,2023
+293,Kisi Ka Bhai Kisi Ki Jaan,,2023
+294,Tu Jhoothi Main Makkaar,,2023
+295,Bholaa,,2023
+296,Selfiee,,2023
+297,Shehzada,,2023
+298,Stree 2,,2024
+299,Fighter,,2024
+300,Kalki 2898 AD,,2024
+301,Pushpa: The Rule,,2024
+302,Singham Again,,2024
+303,Merry Christmas,,2024
+304,Teri Baaton Mein Aisa Uljha Jiya,,2024
+305,Crew,,2024
+306,Maidaan,,2024
+307,Bade Miyan Chote Miyan,,2024
+308,Auron Mein Kahan Dum Tha,,2024
+309,Vedaa,,2024
+310,Khel Khel Mein,,2024
+311,Devara: Part 1,,2024
+312,Vicky Vidya Ka Woh Wala Video,,2024
+313,Bhool Bhulaiyaa 3,,2024
+314,The Sabarmati Report,,2024
+315,Yodha,,2024
+316,Razakar,,2024
+317,Skyforce,,2025
+318,Emergency,,2025
+319,Chhava,,2025
+320,Sikandar,,2025
+321,Kesari Chapter 2,,2025
+322,War 2,,2025
+323,Housefull 5,,2025
+324,Jolly LLB 3,,2025
+325,Welcome 3,,2025
+326,Deva,,2025
+327,Azaad,,2025
+328,Mere Husband Ki Biwi,,2025
+329,Main Atal Hoon,,2024
+330,Laapataa Ladies,,2024
+331,Do Aur Do Pyaar,,2024
+332,Chandu Champion,,2024
+333,Kill,,2024
+334,Ulajh,,2024
+335,Kanguva,,2024
+336,The Buckingham Murders,,2024
+337,Tum Bin 2,,2016
+338,Sultan,,2016
+339,Rustom,,2016
+340,M.S. Dhoni: The Untold Story,,2016
+341,Ae Dil Hai Mushkil,,2016
+342,Dangal,,2016
+343,Raees,,2017
+344,Jolly LLB 2,,2017
+345,Badrinath Ki Dulhania,,2017
+346,Toilet: Ek Prem Katha,,2017
+347,Tiger Zinda Hai,,2017
+348,Judwaa 2,,2017
+349,Golmaal Again,,2017
+350,Secret Superstar,,2017
+351,3 Idiots,,2009
+352,Kaminey,,2009
+353,De Dana Dan,,2009
+354,Wanted,,2009
+355,Ajab Prem Ki Ghazab Kahani,,2009
+356,Love Aaj Kal,,2009
+357,Main Tera Hero,,2014
+358,Ek Villain,,2014
+359,Bang Bang,,2014
+360,PK,,2014
+361,Happy New Year,,2014
+362,Haider,,2014
+363,Queen,,2014
+364,2 States,,2014
+365,Kick,,2014
+366,Dabangg,,2010
+367,Golmaal 3,,2010
+368,Housefull,,2010
+369,Once Upon a Time in Mumbaai,,2010
+370,Anjaana Anjaani,,2010
+371,Raajneeti,,2010
+372,Kites,,2010
+373,Ishqiya,,2010
+374,My Name Is Khan,,2010
+375,Peepli Live,,2010
+376,Mughal-E-Azam,,1960
+377,Sholay,,1975
+378,Deewar,,1975
+379,Zanjeer,,1973
+380,Don,,1978
+381,Hum Aapke Hain Koun!,,1994
+382,Kuch Kuch Hota Hai,,1998
+383,Dil To Pagal Hai,,1997
+384,Mohabbatein,,2000
+385,Kabhi Khushi Kabhie Gham,,2001
+386,Devdas,,2002
+387,Kal Ho Naa Ho,,2003
+388,Veer-Zaara,,2004
+389,Bunty Aur Babli,,2005
+390,Rang De Basanti,,2006
+391,Omkara,,2006
+392,Taare Zameen Par,,2007
+393,Chak De! India,,2007
+394,Jab We Met,,2007
+395,Jodhaa Akbar,,2008
+396,Ghajini,,2008
+397,Rab Ne Bana Di Jodi,,2008
+398,Rock On!!,,2008
+399,Singh Is Kinng,,2008
+400,Fashion,,2008
