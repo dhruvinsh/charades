@@ -1,401 +1,401 @@
-MOVIE_ID,MOVIE_TITLE,MOVIE_CAST,MOVIE_RELEASE_YEAR
-1,War,,2019
-2,Kabir Singh,,2019
-3,Uri: The Surgical Strike,,2019
-4,Bharat,,2019
-5,Mission Mangal,,2019
-6,Housefull 4,,2019
-7,Gully Boy,,2019
-8,Total Dhamaal,,2019
-9,Chhichhore,,2019
-10,Super 30,,2019
-11,Dil,,1990
-12,Ghayal,,1990
-13,Aaj Ka Arjun,,1990
-14,Kishen Kanhaiya,,1990
-15,Thanedaar,,1990
-16,Baaghi: A Rebel for Love,,1990
-17,Baap Numbri Beta Dus Numbri,,1990
-18,Police Public,,1990
-19,Ghar Ho To Aisa,,1990
-20,Aashiqui,,1990
-21,Saajan,,1991
-22,Hum,,1991
-23,Saudagar,,1991
-24,Phool Aur Kaante,,1991
-25,Sanam Bewafa,,1991
-26,Sadak,,1991
-27,Akayla,,1991
-28,Narsimha,,1991
-29,Trinetra,,1991
-30,Lamhe,,1991
-31,Andhadhun,,2018
-32,Baaghi 2,,2018
-33,Badhaai Ho,,2018
-34,Hichki,,2018
-35,Pad Man,,2018
-36,Padmaavat,,2018
-37,Race 3,,2018
-38,Sanju,,2018
-39,Simmba,,2018
-40,Thugs of Hindostan,,2018
-41,Bajrangi Bhaijaan,,2015
-42,Prem Ratan Dhan Payo,,2015
-43,Dilwale,,2015
-44,Bajirao Mastani,,2015
-45,Tanu Weds Manu: Returns,,2015
-46,Welcome Back,,2015
-47,ABCD 2,,2015
-48,Dil Dhadakne Do,,2015
-49,Baby,,2015
-50,Piku,,2015
-51,Dhoom 3,,2013
-52,Krrish 3,,2013
-53,Chennai Express,,2013
-54,Yeh Jawaani Hai Deewani,,2013
-55,Ram-Leela,,2013
-56,Bodyguard,,2011
-57,Ra.One,,2011
-58,Don 2,,2011
-59,Ready,,2011
-60,Zindagi Na Milegi Dobara,,2011
-61,Singham,,2011
-62,The Dirty Picture,,2011
-63,Rockstar,,2011
-64,Murder 2,,2011
-65,No One Killed Jessica,,2011
-66,Aa Ab Laut Chalen,,1999
-67,Aarzoo,,1999
-68,Anari No.1,,1999
-69,Arjun Pandit,,1999
-70,Baadshah,,1999
-71,Bade Dilwala,,1999
-72,Bhopal Express,,1999
-73,Biwi No.1,,1999
-74,Chandaal Aatma,,1999
-75,Chehraa,,1999
-76,Daag: The Fire,,1999
-77,Dahek,,1999
-78,Dil Kya Kare,,1999
-79,Dillagi,,1999
-80,Double Gadbad,,1999
-81,Dracula,,1999
-82,Dulhan Banoo Main Teri,,1999
-83,Gair,,1999
-84,Godmother,,1999
-85,Haseena Maan Jaayegi,,1999
-86,Heeralal Pannalal,,1999
-87,Hello Brother,,1999
-88,Hindustan Ki Kasam,,1999
-89,Hogi Pyaar Ki Jeet,,1999
-90,Hote Hote Pyar Ho Gaya,,1999
-91,Hu Tu Tu,,1999
-92,Hum Aapke Dil Mein Rehte Hain,,1999
-93,Hum Dil De Chuke Sanam,,1999
-94,Hum Saath-Saath Hain,,1999
-95,Hum Tum Pe Marte Hain,,1999
-96,International Khiladi,,1999
-97,Jaanam Samjha Karo,,1999
-98,Jaanwar,,1999
-99,Jahan Tum Le Chalo,,1999
-100,Jai Hind,,1999
-101,Kaala Samrajya,,1999
-102,Kachche Dhaage,,1999
-103,Kahani Kismat Ki,,1999
-104,Kartoos,,1999
-105,Kaun,,1999
-106,Khoobsurat,,1999
-107,Khooni Ilaaka: The Prohibited Area,,1999
-108,Khopdi: The Skull,,1999
-109,Kohram,,1999
-110,Laawaris,,1999
-111,Lal Baadshah,,1999
-112,Lo Main Aa Gaya,,1999
-113,Love You Hamesha,,1999
-114,Maa Kasam,,1999
-115,Manchala,,1999
-116,Mann,,1999
-117,Mast,,1999
-118,Mother,,1999
-119,Munnibai,,1999
-120,Naukar Ki Kameez,,1999
-121,Nyaydaata,,1999
-122,Phir Kabhi,,1999
-123,Phool Aur Aag,,1999
-124,Putlibai,,1999
-125,Pyaar Koi Khel Nahin,,1999
-126,Pyaar Mein Kabhi Kabhi,,1999
-127,Rajaji,,1999
-128,Safari,,1999
-129,Samar,,1999
-130,Sangharsh,,1999
-131,Sanyasi Mera Naam,,1999
-132,Sarfarosh,,1999
-133,Sarfarosh-E-Hind,,1999
-134,Sautela,,1999
-135,Shaheed Udham Singh,,1999
-136,Shera,,1999
-137,Shool,,1999
-138,Silsila Hai Pyar Ka,,1999
-139,Sirf Tum,,1999
-140,Sooryavansham,,1999
-141,Split Wide Open,,1999
-142,Taal,,1999
-143,Tabaahi: The Destroyer,,1999
-144,Thakshak,,1999
-145,Trishakti,,1999
-146,Vaastav: The Reality,,1999
-147,Yeh Hai Mumbai Meri Jaan,,1999
-148,Zulmi,,1999
-149,Aatank,,1996
-150,Agni Sakshi,,1996
-151,Aisi Bhi Kya Jaldi Hai,,1996
-152,Ajay,,1996
-153,Angaara,,1996
-154,Apne Dam Par,,1996
-155,Army,,1996
-156,Aur Ek Prem Kahani,,1996
-157,Aurat Aurat Aurat,,1996
-158,Bal Bramhachari,,1996
-159,Bambai Ka Babu,,1996
-160,Bandish,,1996
-161,Beqabu,,1996
-162,Bhairavi,,1996
-163,Bhishma,,1996
-164,Chaahat,,1996
-165,Chall,,1996
-166,Chhota Sa Ghar,,1996
-167,Chhote Sarkar,,1996
-168,Daanveer,,1996
-169,Daraar,,1996
-170,Dastak,,1996
-171,Dil Tera Deewana,,1996
-172,Diljale,,1996
-173,Duniyaa Jhukti Hai,,1996
-174,Dushman Duniya Ka,,1996
-175,Dushmani: A Violent Love Story,,1996
-176,Ek Anari Do Khiladi,,1996
-177,Ek Tha Raja,,1996
-178,English Babu Desi Mem,,1996
-179,Fareb,,1996
-180,Fire,,1996
-181,Ghatak,,1996
-182,Gehra Raaz,,1996
-183,Hahakaar,,1996
-184,Halo,,1996
-185,Hasina Aur Nagina,,1996
-186,Himmat,,1996
-187,Himmatvar,,1996
-188,Hukumnama,,1996
-189,Hum Hain Khalnayak,,1996
-190,Hum Hain Premi,,1996
-191,Is Raat Ki Subah Nahin,,1996
-192,Jaan,,1996
-193,Jagannath,,1996
-194,Jay Baba Pashupatinath,,1996
-195,Jeet,,1996
-196,Jung,,1996
-197,Jurmana,,1996
-198,Kalinga,,1996
-199,Khamoshi: The Musical,,1996
-200,Khiladiyon Ka Khiladi,,1996
-201,Khilona,,1996
-202,Khoon Ki Pyasi,,1996
-203,Krishna,,1996
-204,Laalchee,,1996
-205,Loafer,,1996
-206,Maachis,,1996
-207,Maahir,,1996
-208,Mafia,,1996
-209,Majhdhaar,,1996
-210,Masoom,,1996
-211,Megha,,1996
-212,Mr. Bechara,,1996
-213,Muqadama,,1996
-214,Muqaddar,,1996
-215,Muthi Bhar Zameen,,1996
-216,Namak,,1996
-217,Nirbhay,,1996
-218,Papa Kehte Hai,,1996
-219,Papi Gudia,,1996
-220,Prem Granth,,1996
-221,Raja Aur Rangeeli,,1996
-222,Raja Hindustani,,1996
-223,Raja Ki Aayegi Baraat,,1996
-224,Rajkumar,,1996
-225,Rakshak,,1996
-226,Ram Aur Shyam,,1996
-227,Rangbaaz,,1996
-228,Return of Jewel Thief,,1996
-229,Saajan Chale Sasural,,1996
-230,Sanshodhan,,1996
-231,Sapoot,,1996
-232,Sardari Begum,,1996
-233,Shastra,,1996
-234,Shikaar,,1996
-235,Shohrat,,1996
-236,Smuggler,,1996
-237,Spot Boy,,1996
-238,Talaashi,,1996
-239,Tere Mere Sapne,,1996
-240,The Making of the Mahatma,,1996
-241,The Square Circle,,1996
-242,Tu Chor Main Sipahi,,1996
-243,Vijeta,,1996
-244,Vishwasghaat,,1996
-245,Yaaron Ka Yaar,,1996
-246,Yash,,1996
-247,Zordaar,,1996
-248,Dilwale,,1994
-249,Dilwale Dulhania Le Jayenge,,1995
-250,Karan Arjun,,1995
-251,Raja,,1995
-252,Barsaat,,1995
-253,Rangeela,,1995
-254,Coolie No. 1,,1995
-255,Sabse Bada Khiladi,,1995
-256,Trimurti,,1995
-257,Ram Jaane,,1995
-258,Akele Hum Akele Tum,,1995
-259,Brahmastra: Part One – Shiva,,2022
-260,The Kashmir Files,,2022
-261,Bhool Bhulaiyaa 2,,2022
-262,Gangubai Kathiawadi,,2022
-263,Radhe Shyam,,2022
-264,Jugjugg Jeeyo,,2022
-265,Laal Singh Chaddha,,2022
-266,Vikram Vedha,,2022
-267,Samrat Prithviraj,,2022
-268,Liger,,2022
-269,Sooryavanshi,,2021
-270,83,,2021
-271,Antim: The Final Truth,,2021
-272,Bell Bottom,,2021
-273,Chandigarh Kare Aashiqui,,2021
-274,Tadap,,2021
-275,Roohi,,2021
-276,Mumbai Saga,,2021
-277,Bunty Aur Babli 2,,2021
-278,Radhe,,2021
-279,Shershaah,,2021
-280,Sardar Udham,,2021
-281,Atrangi Re,,2021
-282,Haseen Dillruba,,2021
-283,Pathaan,,2023
-284,Jawan,,2023
-285,Animal,,2023
-286,Dunki,,2023
-287,Tiger 3,,2023
-288,Gadar 2,,2023
-289,Adipurush,,2023
-290,Rocky Aur Rani Kii Prem Kahaani,,2023
-291,Zara Hatke Zara Bachke,,2023
-292,OMG 2,,2023
-293,Kisi Ka Bhai Kisi Ki Jaan,,2023
-294,Tu Jhoothi Main Makkaar,,2023
-295,Bholaa,,2023
-296,Selfiee,,2023
-297,Shehzada,,2023
-298,Stree 2,,2024
-299,Fighter,,2024
-300,Kalki 2898 AD,,2024
-301,Pushpa: The Rule,,2024
-302,Singham Again,,2024
-303,Merry Christmas,,2024
-304,Teri Baaton Mein Aisa Uljha Jiya,,2024
-305,Crew,,2024
-306,Maidaan,,2024
-307,Bade Miyan Chote Miyan,,2024
-308,Auron Mein Kahan Dum Tha,,2024
-309,Vedaa,,2024
-310,Khel Khel Mein,,2024
-311,Devara: Part 1,,2024
-312,Vicky Vidya Ka Woh Wala Video,,2024
-313,Bhool Bhulaiyaa 3,,2024
-314,The Sabarmati Report,,2024
-315,Yodha,,2024
-316,Razakar,,2024
-317,Skyforce,,2025
-318,Emergency,,2025
-319,Chhava,,2025
-320,Sikandar,,2025
-321,Kesari Chapter 2,,2025
-322,War 2,,2025
-323,Housefull 5,,2025
-324,Jolly LLB 3,,2025
-325,Welcome 3,,2025
-326,Deva,,2025
-327,Azaad,,2025
-328,Mere Husband Ki Biwi,,2025
-329,Main Atal Hoon,,2024
-330,Laapataa Ladies,,2024
-331,Do Aur Do Pyaar,,2024
-332,Chandu Champion,,2024
-333,Kill,,2024
-334,Ulajh,,2024
-335,Kanguva,,2024
-336,The Buckingham Murders,,2024
-337,Tum Bin 2,,2016
-338,Sultan,,2016
-339,Rustom,,2016
-340,M.S. Dhoni: The Untold Story,,2016
-341,Ae Dil Hai Mushkil,,2016
-342,Dangal,,2016
-343,Raees,,2017
-344,Jolly LLB 2,,2017
-345,Badrinath Ki Dulhania,,2017
-346,Toilet: Ek Prem Katha,,2017
-347,Tiger Zinda Hai,,2017
-348,Judwaa 2,,2017
-349,Golmaal Again,,2017
-350,Secret Superstar,,2017
-351,3 Idiots,,2009
-352,Kaminey,,2009
-353,De Dana Dan,,2009
-354,Wanted,,2009
-355,Ajab Prem Ki Ghazab Kahani,,2009
-356,Love Aaj Kal,,2009
-357,Main Tera Hero,,2014
-358,Ek Villain,,2014
-359,Bang Bang,,2014
-360,PK,,2014
-361,Happy New Year,,2014
-362,Haider,,2014
-363,Queen,,2014
-364,2 States,,2014
-365,Kick,,2014
-366,Dabangg,,2010
-367,Golmaal 3,,2010
-368,Housefull,,2010
-369,Once Upon a Time in Mumbaai,,2010
-370,Anjaana Anjaani,,2010
-371,Raajneeti,,2010
-372,Kites,,2010
-373,Ishqiya,,2010
-374,My Name Is Khan,,2010
-375,Peepli Live,,2010
-376,Mughal-E-Azam,,1960
-377,Sholay,,1975
-378,Deewar,,1975
-379,Zanjeer,,1973
-380,Don,,1978
-381,Hum Aapke Hain Koun!,,1994
-382,Kuch Kuch Hota Hai,,1998
-383,Dil To Pagal Hai,,1997
-384,Mohabbatein,,2000
-385,Kabhi Khushi Kabhie Gham,,2001
-386,Devdas,,2002
-387,Kal Ho Naa Ho,,2003
-388,Veer-Zaara,,2004
-389,Bunty Aur Babli,,2005
-390,Rang De Basanti,,2006
-391,Omkara,,2006
-392,Taare Zameen Par,,2007
-393,Chak De! India,,2007
-394,Jab We Met,,2007
-395,Jodhaa Akbar,,2008
-396,Ghajini,,2008
-397,Rab Ne Bana Di Jodi,,2008
-398,Rock On!!,,2008
-399,Singh Is Kinng,,2008
-400,Fashion,,2008
+MOVIE_ID,MOVIE_TITLE,MOVIE_CAST,MOVIE_RELEASE_YEAR,TMDB_ID,POPULARITY,VOTE_AVERAGE,VOTE_COUNT,POSTER_PATH,ORIGINAL_LANGUAGE,GENRE_IDS,DIFFICULTY
+1,War,,2019,585268,5.3409,6.753,370,/yUtaHkL2SDIAZhRApZAyQrAXygn.jpg,hi,28|53|12,easy
+2,Kabir Singh,,2019,577328,5.4514,6.332,176,/unqiPjtc6CGqs13zho7ZvWU85zu.jpg,hi,18|10749,easy
+3,Uri: The Surgical Strike,,2019,554600,2.7556,7.035,463,/yNySAgpAnWmPpYinim9E0tUzJWG.jpg,hi,28|18|10752,medium
+4,Bharat,,2019,569594,2.6028,6.088,68,/aawdjzVsfKvRRIFu9Ni74wZyjc8.jpg,hi,28|36|18,medium
+5,Mission Mangal,,2019,611594,3.1984,6.733,75,/yUR7yDFNXQSoA51G0PPjIXOG2C9.jpg,hi,18|36,medium
+6,Housefull 4,,2019,611748,2.1162,5.698,96,/aCJOZzWV6cpZ9p9tmfEzXq4EqN8.jpg,hi,35|18|10749,medium
+7,Gully Boy,,2019,491625,4.4271,7.3,206,/4RE7TD5TqEXbPKyUHcn7CSeMlrJ.jpg,hi,18|10402,easy
+8,Total Dhamaal,,2019,576121,2.935,5.2,48,/2ZeE0hQSVMNjkRCqyxkBrvnmzsr.jpg,hi,35|12,medium
+9,Chhichhore,,2019,596650,2.6412,7.701,167,/cGDPQtQ5igtPMt3oJ6BCAor6dFp.jpg,hi,10749|35|18,medium
+10,Super 30,,2019,534075,1.5018,7.226,126,/n0LdZvEqZjnSQSHzzwryFBYjXk1.jpg,hi,18,medium
+11,Dil,,1990,65683,1.7804,6.5,34,/aecBFir2aF59MOflpYimaFu7hnI.jpg,hi,18|35|10749,medium
+12,Ghayal,,1990,71308,3.9496,6.8,20,/r8n2JqfyxoL1qBEp8JnnyiFg2fU.jpg,hi,28|80|18,easy
+13,Aaj Ka Arjun,,1990,307490,0.4035,7.0,5,/4V4QbSabLUiT3LhyXFq1oqsjJ5K.jpg,hi,28|80|18,hard
+14,Kishen Kanhaiya,,1990,125297,3.664,6.5,14,/vcQyjd0jWT2VOImJRJIssajfOUz.jpg,hi,18|10751,easy
+15,Thanedaar,,1990,230431,1.9976,6.0,5,/8UXYkAeVNSpqtNFJ2OW74JtVT0p.jpg,hi,28|80|18,medium
+16,Baaghi: A Rebel for Love,,1990,161392,2.6051,5.2,10,/rmKu3ZUUipA0NFjhck8cE6Lf5Hj.jpg,hi,28|18|10749,medium
+17,Baap Numbri Beta Dus Numbri,,1990,46372,0.358,6.3,7,/75LSgHvJXYTYYghiLYSilUTEsWD.jpg,hi,35,hard
+18,Police Public,,1990,305876,1.4313,6.0,1,/6qCZlZrpuJuTZNhP3y6gyfjLaN8.jpg,en,,medium
+19,Ghar Ho To Aisa,,1990,331362,0.2394,6.2,5,/lKhOnyQBudE32jPQxtyIhTNhhOZ.jpg,hi,18,hard
+20,Aashiqui,,1990,34369,4.0072,5.3,26,/4we2et0iMkYGYCV3xS6bhTHI55.jpg,hi,18|10749|10402,easy
+21,Saajan,,1991,107745,4.8592,6.458,36,/wg4WBjFhYZeLaaQhE3NeFyfTn2Y.jpg,hi,18|10749,easy
+22,Hum,,1991,65954,1.0257,5.851,37,/blnhL1cIxjjLgNdlDA8tIbvbCCO.jpg,hi,10749|28,medium
+23,Saudagar,,1991,166017,1.9871,6.538,13,/yHK8wCbRiIrpQslQ0G1kni8MbJx.jpg,hi,18,medium
+24,Phool Aur Kaante,,1991,230437,2.6408,6.5,15,/lNxSSYUK2RZtTo9rKCyzVq1twzM.jpg,hi,28|10749|18,medium
+25,Sanam Bewafa,,1991,161396,3.0921,5.0,11,/mnou9y9BgH7JVmsozvuqGxVPULc.jpg,hi,18|10751,medium
+26,Sadak,,1991,230435,3.4427,5.591,22,/fFESWq8YQHRrwSJ9K8ThAxlDCx.jpg,hi,10749|53|28,medium
+27,Akayla,,1991,380593,1.882,4.7,7,/6z4z9IBhvS30flG17Ov93NDWBiC.jpg,hi,53|28|18,medium
+28,Narsimha,,1991,198343,0.4384,4.9,6,/KyeS7VRIh1v5gcmY4YekSIty1x.jpg,hi,28,hard
+29,Trinetra,,1991,347951,2.3646,9.5,2,/cdw6kaZ38CgsQt6htG34H2EhLC3.jpg,hi,28,medium
+30,Lamhe,,1991,64879,2.2616,6.583,24,/aw9xd5GhQkyaAsTblNi3XydvEcK.jpg,hi,18|10749,medium
+31,Andhadhun,,2018,534780,5.1126,7.613,604,/dy3K6hNvwE05siGgiLJcEiwgpdO.jpg,hi,80|9648|53|35|10402,easy
+32,Baaghi 2,,2018,496316,4.3749,5.8,82,/nkjkHg9yCpPDM7COGCXfDtUJa2X.jpg,hi,28|80|12|9648|53,easy
+33,Badhaai Ho,,2018,547654,2.323,7.189,167,/1RCzZkjxnL9MiAOP4oQQm63Ku0p.jpg,hi,35|10749|18,medium
+34,Hichki,,2018,493623,3.7536,7.6,153,/awN7MPVHcubWEqfo7T5jidx3xYY.jpg,hi,18|35,easy
+35,Pad Man,,2018,447856,3.4414,7.436,235,/guI9SEqpZ6A0mhYpngb1gwAy6N2.jpg,hi,35|18,medium
+36,Padmaavat,,2018,432527,6.9802,6.9,301,/5kk71s8Vmvt8XQOojevhTA5QcB0.jpg,hi,18|36|10749,easy
+37,Race 3,,2018,496320,0.8996,3.6,83,/wtnA5mmNumYkeevokar6IskyrZP.jpg,hi,53|28|80|12,hard
+38,Sanju,,2018,496328,7.3202,7.225,213,/q1wkN4VQuBTj1AeyTLLz2w6awMA.jpg,hi,18,easy
+39,Simmba,,2018,496524,1.122,6.2,95,/ulQO4XJ1xlWdl4vX8Lr3SbWRfZw.jpg,hi,28|35|18,medium
+40,Thugs of Hindostan,,2018,472138,3.9816,5.508,121,/eonEvymAPpXvWvbBu21HYJx8VdS.jpg,hi,12|28,easy
+41,Bajrangi Bhaijaan,,2015,348892,4.028,7.8,532,/vhlliI7HZZlWfo5d6CiyfBAGLrW.jpg,hi,35|18|12,easy
+42,Prem Ratan Dhan Payo,,2015,362136,5.2581,5.298,121,/pCxT9c2E0YhzxsSkweVW2ELO3mS.jpg,hi,10749|18|28,easy
+43,Dilwale,,2015,370665,5.4116,6.6,337,/pYgPu6hhOr61knwbestTx4vSdMb.jpg,hi,80|28|35,easy
+44,Bajirao Mastani,,2015,362045,5.9592,7.3,299,/eXKHjELZAbF7cVd9fzYMhvSsXDI.jpg,hi,36|10749|18,easy
+45,Tanu Weds Manu: Returns,,2015,336211,3.0536,6.873,165,/sO3XD6ZDZetb2N6YDQrHLTVQrfq.jpg,hi,35|10749,medium
+46,Welcome Back,,2015,357563,1.4716,4.95,70,/xnRIT3ggVcJxGWylKw85n6pteLp.jpg,hi,28|35,medium
+47,ABCD 2,,2015,336790,0.854,5.8,95,/7S0heTpQydVBSYl6yBxmqVyentQ.jpg,hi,18,hard
+48,Dil Dhadakne Do,,2015,338065,3.9688,6.9,156,/AqFX6282JM2ollS4XTFp6t6Dwa9.jpg,hi,18|10751|10749,easy
+49,Baby,,2015,314389,2.9368,6.817,186,/5yezGgo37qmd6kDknZKFzbhT19b.jpg,hi,28|53,medium
+50,Piku,,2015,332835,4.5285,7.111,212,/yo7EZWiLpLGhqs3YnlDGDBPjfTb.jpg,hi,35|18,easy
+51,Dhoom 3,,2013,44977,6.2716,6.03,304,/rUVTM5EQUQ2I0fcfE46AkvBYWae.jpg,hi,28|80,easy
+52,Krrish 3,,2013,204435,2.4916,5.7,195,/lJOPh0j0L1IA5mJvHf2RNRdzFlO.jpg,hi,28|878,medium
+53,Chennai Express,,2013,205022,2.4549,6.499,371,/9j7XfhBJKNfidMCa8JsNbqU1waV.jpg,hi,10749|35|28,medium
+54,Yeh Jawaani Hai Deewani,,2013,185008,5.598,7.29,288,/em39H81XLCDgXsI7V4IcBZseEO6.jpg,hi,10749|35,easy
+55,Ram-Leela,,2013,235984,1.3415,6.967,197,/6Pph0xbOJvNPhWh1fdeWGHppSPH.jpg,hi,18|10749,medium
+56,Bodyguard,,2011,73582,2.8119,5.234,154,/12VEUEHebd9ydQs0Y4ikzb179LY.jpg,hi,18|28|10749,medium
+57,Ra.One,,2011,41517,1.7945,5.7,365,/qwC3rbgCI0frJpRxVm74Ak3ktpU.jpg,hi,12|28|878,medium
+58,Don 2,,2011,41109,1.3713,6.952,259,/2gBM8c36HIwn4vc2UuMeliqiCKY.jpg,hi,28|53,medium
+59,Ready,,2011,65946,0.9594,5.025,99,/umfKMUkXXPfMUoOq60nXjDbQOCL.jpg,hi,28|35,hard
+60,Zindagi Na Milegi Dobara,,2011,61202,4.611,7.613,397,/hKO9O715wYxjkQSEv47giCYcyO8.jpg,hi,18|35|10749,easy
+61,Singham,,2011,70590,0.8057,6.5,176,/pggLRaurdWwjqX2vkhKIVQSBjXV.jpg,hi,18|28|80,hard
+62,The Dirty Picture,,2011,81273,0.9483,6.2,85,/oebs05w6hggeleB0F28uerrzvkq.jpg,hi,35|18,hard
+63,Rockstar,,2011,79464,5.5014,7.3,215,/cJZC9riwrdATBUonkZJZD6y9g40.jpg,hi,18|10402|10749,easy
+64,Murder 2,,2011,69775,1.6721,5.647,51,/y0Nb0eN5ybRX3j4uMyk5NN96ugl.jpg,hi,28|80|18|53,medium
+65,No One Killed Jessica,,2011,53569,1.6417,6.813,83,/oIFJXzzfG2sRxCn1T03WVN0gl9v.jpg,hi,80|18,medium
+66,Aa Ab Laut Chalen,,1999,75253,3.7449,5.5,17,/w87ziVrS9aWGW3WvDU6VJb2jXDQ.jpg,hi,18|10749,easy
+67,Aarzoo,,1999,232708,1.1896,5.5,12,/zdc5t0OFKFDU54qObcvsW7q7tnx.jpg,hi,28|10402|18,medium
+68,Anari No.1,,1999,278533,2.1813,5.6,8,/seweP1ozpskTEuUrgqqLITWJ6dz.jpg,hi,35,medium
+69,Arjun Pandit,,1999,213565,0.7057,5.5,8,/qUbfKDqTKlNlVAZXjxMOl6CUO87.jpg,hi,28|80|10749,hard
+70,Baadshah,,1999,41902,3.7939,6.532,109,/7r1nKEVxIlVQFSsijr3fndD1TDn.jpg,hi,28|35,easy
+71,Bade Dilwala,,1999,199979,0.5056,2.6,5,/oGFDn7MlItAStMbiG7OyrhDTzzE.jpg,hi,10749|35|18,hard
+72,Bhopal Express,,1999,118631,0.2333,6.2,4,/eBKb2WtR0jI3dp7694BSAX4Szir.jpg,hi,18|10749,hard
+73,Biwi No.1,,1999,161226,3.8415,5.8,71,/4c787y8j6XCuJHDv13Yuwu0FHmw.jpg,hi,35|18|10749,easy
+74,Chandaal Aatma,,1999,,0,,,,hi,,hard
+75,Chehraa,,1999,,0,,,,hi,,hard
+76,Daag: The Fire,,1999,357133,1.26,5.5,6,/wtqrWRwduZaSyzcacho4HmZYiNq.jpg,hi,53|28|18,medium
+77,Dahek,,1999,211276,4.566,4.3,3,/6Qp95DxZip8OT2GPt0TBIqCt8I8.jpg,hi,10749,easy
+78,Dil Kya Kare,,1999,165066,0.6745,5.5,12,/61k3JXpqxfjcltYEgzdotOWaUo.jpg,hi,18|10749,hard
+79,Dillagi,,1999,457714,0.4225,5.4,12,/A9uVeT4605jLKHDUL4Z3kE79Can.jpg,hi,10751|18|10749,hard
+80,Double Gadbad,,1999,,0,,,,hi,,hard
+81,Dracula,,1999,723186,1.814,7.0,2,/k4n4TH0M1lyoKnHumA2Xf609o64.jpg,hi,27,medium
+82,Dulhan Banoo Main Teri,,1999,276929,0.1391,0.0,0,/ucyH9WNBJSdlNw3Y6JSmqO6KmOm.jpg,hi,,hard
+83,Gair,,1999,336104,0.5956,8.2,3,/zjguXiXCzCz9vtju8qCdztiSLgY.jpg,hi,28|18,hard
+84,Godmother,,1999,395026,1.2925,8.5,3,/6CcXydsrQMSKjj4xNfT81ioL4TM.jpg,en,,medium
+85,Haseena Maan Jaayegi,,1999,30321,0.4808,6.0,36,/pNZkVQOpSFkOEVRIXJGUInFNE5w.jpg,hi,28|35,hard
+86,Heeralal Pannalal,,1999,,0,,,,hi,,hard
+87,Hello Brother,,1999,39347,2.6683,5.575,53,/edwYmD9YUs6gMPEkNOA78f28pwM.jpg,hi,35|10749,medium
+88,Hindustan Ki Kasam,,1999,441139,3.0394,5.7,3,/nCcdnqWI3Yox7cPkVisgL4DnU0.jpg,hi,18|28,medium
+89,Hogi Pyaar Ki Jeet,,1999,227832,0.587,5.6,8,/wgi3V0V3RsIr8S0IbQXPUpsYPLf.jpg,hi,28|35|18,hard
+90,Hote Hote Pyar Ho Gaya,,1999,316686,0.1962,6.5,2,/6s21RGG5h4aKQ4ZUNmJ3pEn8xlB.jpg,hi,,hard
+91,Hu Tu Tu,,1999,332910,0.2258,4.786,7,/tfhC2EYKxfXdJKk00fsUElImnl9.jpg,hi,,hard
+92,Hum Aapke Dil Mein Rehte Hain,,1999,52860,2.3201,5.767,15,/imN87wvGiqaXJ8ia5pi8Iqil4cJ.jpg,hi,10751|18|10749,medium
+93,Hum Dil De Chuke Sanam,,1999,5319,2.7025,6.4,118,/kuoJvw45TobVp5QcyV16nK26NFx.jpg,hi,35|18|10749,medium
+94,Hum Saath-Saath Hain,,1999,62883,10.2203,6.0,92,/lEAEzpAfSyBZc5sw1NBnWr5TeZU.jpg,hi,10749|10751|18,easy
+95,Hum Tum Pe Marte Hain,,1999,400392,0.4249,5.333,6,/ttNDEOQR2GveYQztVCMRDxNLnMq.jpg,hi,10749,hard
+96,International Khiladi,,1999,117335,0.5207,5.1,14,/f18coCzINl2kgXY7a18285S1bVV.jpg,hi,28|53|80|10749,hard
+97,Jaanam Samjha Karo,,1999,161227,2.738,4.3,15,/uAE2tf9EVtBeBSl6M941Lu0QKL5.jpg,hi,18|10749,medium
+98,Jaanwar,,1999,353429,1.359,6.3,16,/hAdnoPTsd1uWXKtKNzHzhijg6j.jpg,hi,28,medium
+99,Jahan Tum Le Chalo,,1999,1568345,0.0804,0.0,0,,en,18|10749,hard
+100,Jai Hind,,1999,647580,3.7258,7.8,3,/pQhxczxu25U8ma52uCx9S2NgP5O.jpg,hi,28|10749,easy
+101,Kaala Samrajya,,1999,819779,0.0214,2.333,3,/hnmyn8DtJcpOr6n9FP3uSO0h1Uf.jpg,hi,,hard
+102,Kachche Dhaage,,1999,211275,3.0086,5.4,16,/dldo2zZgGVlhvKG6DvqJd5nnjAt.jpg,hi,28|18|10749,medium
+103,Kahani Kismat Ki,,1999,,0,,,,hi,,hard
+104,Kartoos,,1999,319920,1.5059,4.3,6,/1G06L0m2NsHytdGOGxOu5AQ0Tc0.jpg,hi,28|80|53,medium
+105,Kaun,,1999,142412,1.257,6.1,27,/tNiBlJVAscbSHiWllhpksmnDFgC.jpg,hi,53|9648,medium
+106,Khoobsurat,,1999,71257,0.3929,5.0,13,/mS6Srh8CcF5okUpYuBPIz6k1hmV.jpg,hi,35|10749|10751,hard
+107,Khooni Ilaaka: The Prohibited Area,,1999,,0,,,,hi,,hard
+108,Khopdi: The Skull,,1999,496542,0.2503,0.0,0,/aaCYudw1axFrY1g7sQ7THavLOAi.jpg,hi,27,hard
+109,Kohram,,1999,411832,0.4141,6.6,7,/6AdilgHGAiS8FKGebu44jSqBeN.jpg,hi,28|18|53|80,hard
+110,Laawaris,,1999,350962,0.5098,5.7,3,/onuQsNbZtlWcVX0tI2wzXndlVdf.jpg,hi,,hard
+111,Lal Baadshah,,1999,458939,0.6329,5.5,11,/6PKMyhYqeuKifjfUfha18wtp0uF.jpg,hi,28|18,hard
+112,Lo Main Aa Gaya,,1999,,0,,,,hi,,hard
+113,Love You Hamesha,,1999,308059,0.3511,2.0,1,/zqyTcnoSBXpBrb6A0uUxZ8UIqje.jpg,hi,10749,hard
+114,Maa Kasam,,1999,627967,0.2912,10.0,1,/hwsy78fKHb3jSlsDyy24KzKHRE9.jpg,hi,28,hard
+115,Manchala,,1999,,0,,,,hi,,hard
+116,Mann,,1999,159664,3.0396,6.051,39,/nbn9Hxj7GEBxrZ8biAfIjhYSs1Y.jpg,hi,18|10749,medium
+117,Mast,,1999,53281,1.6184,5.8,49,/mFF1AtJdfVgY1E4I7lNfE3cA4Mt.jpg,cn,28|35|80,medium
+118,Mother,,1999,356993,1.0034,2.8,5,/eUtdii1oqAlOw2RK0FMECUrth4b.jpg,hi,35|18,medium
+119,Munnibai,,1999,461278,0.2662,4.0,1,/bRrHuwgg7zu3K9aZBRwigMHzY8h.jpg,hi,28,hard
+120,Naukar Ki Kameez,,1999,257622,0.177,5.7,3,/5tPIHp3u12p4fpb6BH9D25EndTu.jpg,hi,18,hard
+121,Nyaydaata,,1999,809619,0.7474,0.0,0,/n7fwMFfG8qoM2zhvwt5bCIyuJMh.jpg,hi,,hard
+122,Phir Kabhi,,1999,,0,,,,hi,,hard
+123,Phool Aur Aag,,1999,914939,0.2463,10.0,1,/lQAP8DT95xUhDsstaIl4PjT1NeN.jpg,hi,28|18,hard
+124,Putlibai,,1999,1400613,0.5012,0.0,0,,hi,,hard
+125,Pyaar Koi Khel Nahin,,1999,305337,3.1525,4.3,7,/kQu7mmIO9BKThoSGjCLeTsyCY3k.jpg,hi,10749|18,medium
+126,Pyaar Mein Kabhi Kabhi,,1999,467365,0.3356,0.0,0,/6aaHEgZ8xJYMeKUsZjr93zE8oid.jpg,hi,18,hard
+127,Rajaji,,1999,297016,1.4544,5.6,7,/wmv9qHuKUit9d7FnpC3Atb07Zir.jpg,hi,35|10749,medium
+128,Safari,,1999,532018,0.4242,3.5,2,/uCqd4833VlDZTAOcmBOzMD20alD.jpg,hi,12,hard
+129,Samar,,1999,80827,3.1743,5.4,7,/yDDu07KAOaKKud0GaRQpZoIT5T4.jpg,te,28,medium
+130,Sangharsh,,1999,166012,1.6193,4.846,26,/kFwreKZPhTSQ9zcVsavZ5JuUgfL.jpg,hi,53,medium
+131,Sanyasi Mera Naam,,1999,304631,0.0214,0.0,0,,en,,hard
+132,Sarfarosh,,1999,31524,4.4943,6.765,102,/i6XJCzajVcnfh5ljAn7AGub5vih.jpg,hi,28|18,easy
+133,Sarfarosh-E-Hind,,1999,,0,,,,hi,,hard
+134,Sautela,,1999,,0,,,,hi,,hard
+135,Shaheed Udham Singh,,1999,,0,,,,hi,,hard
+136,Shera,,1999,499247,3.7098,0.0,0,/qI6TKB6u8g0ZbncKGIaRtxAQzUH.jpg,en,,easy
+137,Shool,,1999,170998,3.2999,6.9,16,/hrH5MNv0C0pBsAXLr1TNW8etsXF.jpg,hi,28|80,medium
+138,Silsila Hai Pyar Ka,,1999,543875,0.2519,1.0,2,/7lCRgnKH6DfPaUGzZhcZrOAhcFg.jpg,hi,35|18,hard
+139,Sirf Tum,,1999,166013,4.8107,5.8,15,/c9w9QOJCVyBBApsD1E16kxG6YBo.jpg,hi,10749|10402|18,easy
+140,Sooryavansham,,1999,194136,4.5774,5.9,33,/fI9cqF4scd7OfIJB5zmfeMxD2bg.jpg,hi,28|18,easy
+141,Split Wide Open,,1999,171660,1.034,5.0,6,/rdjrUFXxOSEfhWa5TazICZ5ePlW.jpg,en,18|80,medium
+142,Taal,,1999,20929,5.6437,6.573,48,/n2VsCd4wPIEMTWQBxBJVKVAOeTk.jpg,hi,18|10749,easy
+143,Tabaahi: The Destroyer,,1999,833115,0.5683,0.0,0,/kJda0Nf9fE6chs15ubGL5jUhzs6.jpg,hi,,hard
+144,Thakshak,,1999,73110,3.2928,6.3,6,/rUGay9zMlCvyJ3IBPNvinv4YX4Y.jpg,hi,28,medium
+145,Trishakti,,1999,304044,0.0143,0.0,0,,hi,,hard
+146,Vaastav: The Reality,,1999,146270,0.6483,7.2,51,/fsB57eZ0EJ9nXLxgfjQG9iYiswH.jpg,hi,28|80|18,hard
+147,Yeh Hai Mumbai Meri Jaan,,1999,345779,0.2794,8.0,2,/kFgOQAYVAmjuZCIvtWYWpnpYJDi.jpg,hi,10749|28,hard
+148,Zulmi,,1999,143538,0.6478,6.722,9,/vA3lwh3EfSLzfMcOvI4gQyCDlD.jpg,hi,,hard
+149,Aatank,,1996,127768,2.3517,3.0,3,/95bV5v2h5WkvwQZj1o6OVrowQve.jpg,hi,53|27,medium
+150,Agni Sakshi,,1996,66292,3.5709,6.8,8,/ylH8UvFRzapsmbgtdkwoFHiPmoj.jpg,hi,18|53,easy
+151,Aisi Bhi Kya Jaldi Hai,,1996,1571334,0.0842,0.0,0,/58gnTt07T7UvOsUzzE6vStFPfd5.jpg,hi,35|10749,hard
+152,Ajay,,1996,303105,0.8011,6.5,3,/cjzlBGHeaak2IjDRWRh8ZqwzkGC.jpg,hi,,hard
+153,Angaara,,1996,765107,1.5222,0.0,0,/iaMRRe00204ESnADtXDqnb9PpVo.jpg,hi,28|80|18,medium
+154,Apne Dam Par,,1996,627964,0.3677,5.0,1,/1bA6T1hR2faSY5qH5T6a0vY4kxF.jpg,hi,28|18,hard
+155,Army,,1996,160261,3.6394,4.4,11,/wujllj1QzLAxV7tbcTGWZT72blL.jpg,hi,28|18,easy
+156,Aur Ek Prem Kahani,,1996,712921,3.2329,0.0,0,/8GA9MT53VMGZViB9N3dw7F8QgHZ.jpg,hi,10749|18,medium
+157,Aurat Aurat Aurat,,1996,769934,0.1495,6.0,1,/fONUreDAz1CJEIFzWyEGTpKOWus.jpg,hi,80|18,hard
+158,Bal Bramhachari,,1996,727225,0.957,3.7,3,/ykR8oqrWDjTiuZig00Zp1YxywbB.jpg,hi,28|18,hard
+159,Bambai Ka Babu,,1996,302882,0.5432,7.3,3,/mFqaMAOy3nNY9YlifyCQbTrUqqS.jpg,hi,,hard
+160,Bandish,,1996,895675,0.6534,4.0,1,/biSfmPC2QIP65rd3EOLr6dvBVex.jpg,hi,10749|53,hard
+161,Beqabu,,1996,302718,0.3815,8.3,3,/dTcaBv83Onoftj9tJrFvgXCuk4L.jpg,hi,28|18,hard
+162,Bhairavi,,1996,857481,0.4129,0.0,0,/82HEN8KmRjtNBdjPV8AJ5mghKsz.jpg,hi,18|10749,hard
+163,Bhishma,,1996,795309,2.4922,2.5,2,/53FOIfuMj0Y4GMmCjEk9TygQPIS.jpg,hi,28|53,medium
+164,Chaahat,,1996,102353,4.2326,6.625,24,/cn3gL1s7ZshDUTjcZ0W4JCyBBc6.jpg,hi,18|10749,easy
+165,Chall,,1996,1044682,0.2996,0.0,0,/cnCIZQ8Exn7Ajy0jRnJ4HIjSM5p.jpg,en,,hard
+166,Chhota Sa Ghar,,1996,306356,0.0168,0.0,0,,en,,hard
+167,Chhote Sarkar,,1996,232699,0.2327,4.7,3,/zlJTfskac9IDwitCtoGyLOyNGxd.jpg,hi,10749,hard
+168,Daanveer,,1996,561339,0.5477,9.0,2,/a5wjH2rUvxgefIbrawbcWlVW4LV.jpg,hi,28|18|80,hard
+169,Daraar,,1996,168490,0.6967,7.5,4,/7ttjN1dlJHS9Eb5GlafJ3RAj0Nb.jpg,hi,53|18|10749,hard
+170,Dastak,,1996,458151,2.5658,5.3,3,/3Nw9EqyRiZ8p2fpbNjFdpU3LIBx.jpg,hi,10749|18,medium
+171,Dil Tera Deewana,,1996,,0,,,,hi,,hard
+172,Diljale,,1996,243595,1.3885,7.4,11,/1D5yt3beDErVMl6rqccg4qsJfOc.jpg,hi,28|18|10749,medium
+173,Duniyaa Jhukti Hai,,1996,,0,,,,hi,,hard
+174,Dushman Duniya Ka,,1996,169456,3.2434,8.7,3,/66UuaH0av2GFfFJf9PoPnVmZmu3.jpg,hi,18,medium
+175,Dushmani: A Violent Love Story,,1996,,0,,,,hi,,hard
+176,Ek Anari Do Khiladi,,1996,,0,,,,hi,,hard
+177,Ek Tha Raja,,1996,306377,0.1818,7.5,2,/lCQddeuBl0FMjxo8AGUEW3AIBKa.jpg,hi,,hard
+178,English Babu Desi Mem,,1996,160255,1.6434,5.417,18,/fHC3Ah2uoPunQKQB0EHxHJ8d98l.jpg,hi,10749,medium
+179,Fareb,,1996,544266,1.081,2.5,2,/iZsjnKgs3vwrYSK6hSOGXEYED5L.jpg,hi,53,medium
+180,Fire,,1996,513,2.9888,6.7,68,/jDUCcZ7bBkqhbZ8R0vml3YUd4GG.jpg,en,18|10749,medium
+181,Ghatak,,1996,118632,0.7294,7.3,15,/iuoKFDCV58P5GCqlNTi9S2X2Q3C.jpg,hi,28|18,hard
+182,Gehra Raaz,,1996,,0,,,,hi,,hard
+183,Hahakaar,,1996,,0,,,,hi,,hard
+184,Halo,,1996,305649,0.3414,8.0,2,,hi,18|10751,hard
+185,Hasina Aur Nagina,,1996,338125,1.6599,0.0,0,/27tbWJ1C8lgBdAanISI7MoEug4x.jpg,hi,27,medium
+186,Himmat,,1996,318563,0.3385,2.0,2,/sUfjkkw8rYjWmeRAtd3NaLv9tSN.jpg,hi,28,hard
+187,Himmatvar,,1996,813812,0.1801,0.0,0,/9EemlWXaJhxSBV4rSwJwjqXMo14.jpg,en,28|18,hard
+188,Hukumnama,,1996,,0,,,,hi,,hard
+189,Hum Hain Khalnayak,,1996,,0,,,,hi,,hard
+190,Hum Hain Premi,,1996,887597,0.0,0.0,0,,hi,,hard
+191,Is Raat Ki Subah Nahin,,1996,328842,0.9588,4.0,5,/v6U2HcbXj2DMcIv8MjwS6YdjVhp.jpg,hi,53,hard
+192,Jaan,,1996,512570,5.2379,5.6,7,/lY9tT1ecSzrhdfed84l2Wnwf8WK.jpg,hi,28|10749,easy
+193,Jagannath,,1996,1115816,0.0,0.0,0,,hi,,hard
+194,Jay Baba Pashupatinath,,1996,,0,,,,hi,,hard
+195,Jeet,,1996,141613,3.2946,6.3,22,/rc16sRaw8S4EnXZFcwywdks97LG.jpg,hi,28|10749,medium
+196,Jung,,1996,391729,1.1105,7.0,2,/c7zr5n3neNFjBLDen97gb3M4UCk.jpg,hi,18|28|80,medium
+197,Jurmana,,1996,499239,1.5912,10.0,1,/9QhoNPCHALmU2YKI3JCw7qlDbod.jpg,hi,28|18,medium
+198,Kalinga,,1996,,0,,,,hi,,hard
+199,Khamoshi: The Musical,,1996,97449,0.5099,6.8,22,/lhOkmrXgbk3U8vZkd5bkynmvdyT.jpg,hi,18|10749,hard
+200,Khiladiyon Ka Khiladi,,1996,230454,0.7213,5.1,18,/aJdqZqyDgByRhrQE312iF5GAIvs.jpg,hi,28|80|53,hard
+201,Khilona,,1996,887181,0.0,0.0,0,/cdNMk8Arv1oBzUrag6ZNf1VCPLb.jpg,ro,18|10749,hard
+202,Khoon Ki Pyasi,,1996,480656,0.1579,0.0,0,/mTL4sbufKOFJiFIwGXhRGEmgHz1.jpg,hi,27,hard
+203,Krishna,,1996,302897,1.1408,2.9,7,/eA0JVURiAcNY0uZofTuMFwzi1I0.jpg,hi,28|18|10749,medium
+204,Laalchee,,1996,211129,0.0482,0.0,0,,hi,,hard
+205,Loafer,,1996,325555,3.8042,3.3,6,/C9PWC4xMNYgWfGRXG8veM8dBzZ.jpg,hi,10749|28|35,easy
+206,Maachis,,1996,21460,2.9655,7.0,8,/1gDubagNmgdSY98PMzU7PbAGUrJ.jpg,hi,28|80|53|10402,medium
+207,Maahir,,1996,494255,0.972,0.0,0,/odR8JDSkecWkmFXlSvLIo2FMTR7.jpg,hi,10751,medium
+208,Mafia,,1996,528016,2.8642,0.0,0,/e5rrCsz8GFMBIHfbfWF9RAf4o2A.jpg,hi,28,medium
+209,Majhdhaar,,1996,161416,1.4163,4.0,1,/g8yKMXsnmCPs3CWSE4vBYYmLIbn.jpg,hi,10749,medium
+210,Masoom,,1996,214064,0.2599,5.3,3,/v5ifOT5Whqkz5yAuNxti17HcPm9.jpg,hi,,hard
+211,Megha,,1996,306428,0.0404,9.0,1,,en,,hard
+212,Mr. Bechara,,1996,142136,0.461,5.8,4,/sldMFon3HsvEPofH5UArFm2pEne.jpg,hi,,hard
+213,Muqadama,,1996,,0,,,,hi,,hard
+214,Muqaddar,,1996,887156,1.3161,0.0,0,/oh3fLrM9DtrzGQiqcTtsjrt0z9x.jpg,hi,80,medium
+215,Muthi Bhar Zameen,,1996,,0,,,,hi,,hard
+216,Namak,,1996,368600,0.8346,5.0,2,/o4UtcwYMd7hciPznUVxr9yXbtkZ.jpg,hi,,hard
+217,Nirbhay,,1996,1236085,0.9372,0.0,0,/8O5EwnJu515rSWUnyj6PkaSEHYx.jpg,hi,28|53,hard
+218,Papa Kehte Hai,,1996,166229,0.2595,0.0,0,/D3umfo94miF3Bj2mbrcpb7pfdv.jpg,hi,,hard
+219,Papi Gudia,,1996,348052,0.9981,4.2,5,/hruTqYdxFqwinQR7PBHOX2gDBTA.jpg,hi,53|27,medium
+220,Prem Granth,,1996,308285,2.5295,5.6,5,/gxlrfUm9BQIBHby6oudOIBQN2mz.jpg,hi,10749,medium
+221,Raja Aur Rangeeli,,1996,,0,,,,hi,,hard
+222,Raja Hindustani,,1996,21566,3.2669,6.373,67,/m4Uy3dHYmnYgvZ0U2xK5alazBFR.jpg,hi,18|10749,medium
+223,Raja Ki Aayegi Baraat,,1996,,0,,,,hi,,hard
+224,Rajkumar,,1996,375845,0.6304,5.7,3,/jVIASGr6CqdGxooo5K1i8Hkw8AV.jpg,hi,,hard
+225,Rakshak,,1996,413170,0.3524,5.6,5,/tdkunwE0Q2yU5mVCHkttklbSpbk.jpg,hi,28|53,hard
+226,Ram Aur Shyam,,1996,887717,0.0214,5.0,1,,hi,,hard
+227,Rangbaaz,,1996,303364,0.0143,0.0,0,,en,,hard
+228,Return of Jewel Thief,,1996,232724,0.153,10.0,1,/e7st75Al5DU21xzXb6EakfM68BV.jpg,hi,53,hard
+229,Saajan Chale Sasural,,1996,166871,0.8058,6.1,11,/hv9ro0IWbhqyTkSLxGU4aaQBamK.jpg,hi,35|10749,hard
+230,Sanshodhan,,1996,347575,2.5474,6.0,1,/hNL98qnfRFOzYEjXLtUb6klExhE.jpg,hi,18,medium
+231,Sapoot,,1996,305899,1.8787,4.8,11,/8ray62qezaV4G5sdMrGBR93l5i1.jpg,hi,28|80,medium
+232,Sardari Begum,,1996,206573,1.3042,8.8,3,/gIcwC1M4bKaWbUgH2MNt2zT9m2Y.jpg,hi,18|10402,medium
+233,Shastra,,1996,499660,1.3567,3.5,2,/rk4it1cE8Ra7Yz2hiywXRDpcKuS.jpg,hi,28|35|18,medium
+234,Shikaar,,1996,,0,,,,hi,,hard
+235,Shohrat,,1996,898623,0.0214,8.0,1,/wCfqPe4T5bLtIABk7tMjtEYANDg.jpg,ro,18|10749,hard
+236,Smuggler,,1996,348752,0.3176,6.8,2,/zrhmn7AuhxXBkuNmxLusb3sNo9S.jpg,hi,,hard
+237,Spot Boy,,1996,,0,,,,hi,,hard
+238,Talaashi,,1996,491111,0.4147,0.0,0,/zJJwJe4iChLayI8XdWrEs6chlSG.jpg,hi,53,hard
+239,Tere Mere Sapne,,1996,166872,0.2942,4.0,4,/rwTk5jN5BotQnMIt4CgPQvfNiND.jpg,hi,28|35|10749,hard
+240,The Making of the Mahatma,,1996,334694,0.1256,5.5,4,/b03e7MYEKWclwgXkf2V1CjAmeuZ.jpg,en,18,hard
+241,The Square Circle,,1996,306120,1.0296,3.3,3,/o0x5l4P79pecCOiFX84xHw8uPgW.jpg,hi,18|10402|10749,medium
+242,Tu Chor Main Sipahi,,1996,333583,0.4195,5.3,16,/cmRoqW06eqgjSLiAuxgD3sVscJK.jpg,hi,28|35,hard
+243,Vijeta,,1996,346166,0.0379,0.0,0,/4uZqAdGwH5uLXnnhBv5wLXJyD5y.jpg,en,,hard
+244,Vishwasghaat,,1996,695829,0.8757,0.0,0,/qMjXDo8Yc1B8tl48oOaOQrHD14b.jpg,hi,28,hard
+245,Yaaron Ka Yaar,,1996,,0,,,,hi,,hard
+246,Yash,,1996,305918,0.0659,0.0,0,,en,,hard
+247,Zordaar,,1996,619100,0.2311,0.0,0,/yjAiS3xVq7d47orFiW6U1ibNuYq.jpg,hi,28|10749,hard
+248,Dilwale,,1994,159164,1.1466,6.4,14,/oQJfbkVuRsP8RdUVRzYOzYByd4B.jpg,hi,28|18|10749,medium
+249,Dilwale Dulhania Le Jayenge,,1995,19404,12.7861,8.517,4565,/2CAL2433ZeIihfX1Hb2139CX0pW.jpg,hi,35|18|10749,easy
+250,Karan Arjun,,1995,93519,3.5965,6.69,113,/uYhjsC9gCKhxiG2enkCJgdLOXjB.jpg,hi,28|53,easy
+251,Raja,,1995,205075,3.294,5.3,11,/1UDwr2CnaVRKKJ6UZh4jRbTVV2f.jpg,hi,28|10749,medium
+252,Barsaat,,1995,46375,0.636,5.1,17,/JFSE2glCPewOeXZajuIIDZFs0R.jpg,hi,10749|28,hard
+253,Rangeela,,1995,21570,3.4349,6.8,66,/tUGVpmgWhsg9rZCDNSUW7MJWSKf.jpg,hi,18|10749,medium
+254,Coolie No. 1,,1995,63345,0.5285,6.1,32,/pxdbdWA6EQb15YIEhRVt5iIdStA.jpg,hi,35|10749,hard
+255,Sabse Bada Khiladi,,1995,309593,0.5122,5.6,14,/ipqId5OPEMrZYsPxB6tloW9n1Cp.jpg,hi,28|80,hard
+256,Trimurti,,1995,102358,3.0499,5.6,19,/o6Pmeu0tcw3YKNHLdYw7IrNNdNq.jpg,hi,28|18,medium
+257,Ram Jaane,,1995,160242,5.5273,5.1,34,/3xBLu6PZK6XeyUdRGlHOkONALlr.jpg,hi,28|80,easy
+258,Akele Hum Akele Tum,,1995,16894,3.125,6.549,41,/xpCbEiAstlOOIhjbQhQrTHF4ZEg.jpg,hi,18,medium
+259,Brahmastra: Part One – Shiva,,2022,496331,5.947,6.3,192,/x61qdvHIsr9U53FwoLVDQqAGur0.jpg,hi,28|12|14,easy
+260,The Kashmir Files,,2022,900783,4.3786,7.012,85,/2VvjJFDBFYkVgr89BjqbUl26QyW.jpg,hi,36|18,easy
+261,Bhool Bhulaiyaa 2,,2022,695962,4.5795,6.2,86,/fw0oMHiMt9qOuKEJEmzFiCNAnXc.jpg,hi,27|35,easy
+262,Gangubai Kathiawadi,,2022,664332,3.0121,7.453,181,/wHPEKlzg7CaJFCjWlMdZKpCRIDl.jpg,hi,80|18|36,medium
+263,Radhe Shyam,,2022,673392,3.7951,5.122,37,/szAa23SWNIgJHsvSRyQrvyFT8ef.jpg,te,18|10749,easy
+264,Jugjugg Jeeyo,,2022,765019,5.9017,6.4,44,/ovyWtXhPRKKpSyMUIVYBWiurggY.jpg,hi,35|18,easy
+265,Laal Singh Chaddha,,2022,601635,5.9972,6.313,88,/g5rNmcznZX0UPm8CGjfk7kHcAbq.jpg,hi,18|10749|35,easy
+266,Vikram Vedha,,2022,851783,2.1995,6.656,45,/fkTxPGsWI9QC8ahnShQmMOIXbIg.jpg,hi,28|80|53,medium
+267,Samrat Prithviraj,,2022,611598,6.8857,6.6,29,/itjop20yizH1cwB44tIo5JivPSq.jpg,hi,28|18|36,easy
+268,Liger,,2022,787163,4.0291,4.167,36,/bBZJAdfmcwhyvkwK1XajnHECdoY.jpg,te,28|10749,easy
+269,Sooryavanshi,,2021,592508,5.1672,5.8,172,/zgEc1Tn4iKvttPUzkMOUB4BNoXK.jpg,hi,28|80|53,easy
+270,83,,2021,601337,5.1474,7.198,63,/gTOMTFUbMxSApPRTuECMrl5RyQ2.jpg,hi,18|36,easy
+271,Antim: The Final Truth,,2021,774607,3.7151,6.5,26,/tiGTU46VBHPJ8b0pGneIII1tAkj.jpg,hi,28|53|18,easy
+272,Bell Bottom,,2021,721048,1.893,6.3,41,/aSY5LBwNdpMReaZjGBbcB1kvrHU.jpg,hi,28|53,medium
+273,Chandigarh Kare Aashiqui,,2021,755836,3.6356,5.854,48,/owZYxR8y78tkkEd6mSH2olPsakJ.jpg,hi,18|10749,easy
+274,Tadap,,2021,669696,2.9934,6.769,13,/nj0cMoZjLRrqN9SFW3wCXlSTYxd.jpg,hi,28|10749,medium
+275,Roohi,,2021,694103,5.4165,4.5,37,/10kCy34fbgU9nI5ScfMcCGebNgo.jpg,hi,27|35,easy
+276,Mumbai Saga,,2021,608746,5.3575,5.6,24,/4xTtLkGEmUD5Oqjsv3lrkeLr2NW.jpg,hi,28|18|80,easy
+277,Bunty Aur Babli 2,,2021,666390,4.9902,5.0,10,/9jsd1LOE2nuhJ7FT0m4jph5OIkn.jpg,hi,35|80|18,easy
+278,Radhe,,2021,679844,4.0129,3.914,64,/n6kZfTjuTK3P9ByRFTkBlUwdBRA.jpg,hi,28|12|80|53,easy
+279,Shershaah,,2021,599925,5.4706,7.339,115,/2PToC5l3pFi3yotQy2VJshvk40y.jpg,hi,28|18|53|10752,easy
+280,Sardar Udham,,2021,598826,6.0062,7.138,120,/d4fpJXhUNukd5XnzRO1XfWf7v88.jpg,hi,80|18|36,easy
+281,Atrangi Re,,2021,618911,2.2513,6.484,62,/oHPFZLf2jPZSgFiqzPsSWqPmUMd.jpg,hi,10749|35|18,medium
+282,Haseen Dillruba,,2021,695969,4.325,6.722,115,/hYzaef514peQVZRWGkM3ZvJPqpJ.jpg,hi,10749|9648|53,easy
+283,Pathaan,,2023,864692,5.1788,6.434,244,/arf00BkwvXo0CFKbaD9OpqdE4Nu.jpg,hi,28|12|53,easy
+284,Jawan,,2023,872906,7.4939,7.106,315,/jFt1gS4BGHlK8xt76Y81Alp4dbt.jpg,hi,28|53,easy
+285,Animal,,2023,781732,4.2639,6.116,177,/hr9rjR3J0xBBKmlJ4n3gHId9ccx.jpg,hi,28|80|18,easy
+286,Dunki,,2023,960876,5.7419,6.316,106,/kPRb1mbVHGop0egQ7153y0lhzGL.jpg,hi,12|35|18,easy
+287,Tiger 3,,2023,720557,3.8879,5.8,60,/hVYSsDvXPkTNE9WNOUQzbn2Imvj.jpg,hi,28|12|53,easy
+288,Gadar 2,,2023,885331,3.2416,5.943,53,/brCBYKGQaxZZcwmFF6OIxZLdKVU.jpg,hi,28|18,medium
+289,Adipurush,,2023,734253,5.598,4.673,104,/1H2xEZOixs0z0JKwyjANZiKNNVJ.jpg,hi,28|12|14,easy
+290,Rocky Aur Rani Kii Prem Kahaani,,2023,848116,5.8359,6.033,76,/vTQIqlxUkOuyf2UKhlM2OUaFGKz.jpg,hi,35|18|10751|10749,easy
+291,Zara Hatke Zara Bachke,,2023,920679,3.3562,5.7,19,/wIziBCZWsDCzFbil4iT9TyUOnhT.jpg,hi,35|18|10749,medium
+292,OMG 2,,2023,888710,4.9705,7.271,70,/kApiO3oL6t100aCtkcwEhk2kqgK.jpg,hi,35|18,easy
+293,Kisi Ka Bhai Kisi Ki Jaan,,2023,966719,4.643,5.113,31,/yJ2JqgfWniQLnXPM5WkM7f1rqaY.jpg,hi,10749|28,easy
+294,Tu Jhoothi Main Makkaar,,2023,611359,2.812,6.298,215,/zHLtNP4KP0GMi6p1ACf2QvVnBvI.jpg,hi,35|10749|10751,medium
+295,Bholaa,,2023,965606,4.7285,5.9,32,/chmbRa3tKFq1KNMoyuU8Vf5hlke.jpg,hi,28|12|80|53,easy
+296,Selfiee,,2023,926130,2.3812,6.022,23,/1QU1MCj0gFEZzIKl6pbfLsfClbJ.jpg,hi,35|18,medium
+297,Shehzada,,2023,884434,5.837,5.613,40,/rcKbsGBZCwDs1sVXNkGHqEVLzQW.jpg,hi,28|35|18|10749,easy
+298,Stree 2,,2024,1112426,4.5903,6.6,87,/2NC7sj8rheKxWqLYAbHnCa4mYBH.jpg,hi,27|35,easy
+299,Fighter,,2024,784651,7.2227,6.176,153,/zqFuriKJ6pYDvf72kXNLONnuE8k.jpg,hi,28|18,easy
+300,Kalki 2898 AD,,2024,801688,6.7512,6.422,167,/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg,te,18|28|14|878,easy
+301,Pushpa: The Rule,,2024,857598,3.6424,6.3,129,/t5ePZYRibJ0EEK1FK3GhihVkDW5.jpg,te,28|18|53|80,easy
+302,Singham Again,,2024,1014214,4.1622,5.027,37,/2JbNkHg8m7LaBy61LyrnnlenaxY.jpg,hi,28|18|53|80,easy
+303,Merry Christmas,,2024,11948,2.5951,7.3,511,/sKeZzN7sXPLRe5rRlOuoXsh1qPA.jpg,ja,18|36|10752,medium
+304,Teri Baaton Mein Aisa Uljha Jiya,,2024,1110390,5.8344,5.775,51,/vwsBpnwmMO0xtIgxvCrViJgZhVj.jpg,hi,10749|35|878,easy
+305,Crew,,2024,1045931,3.3406,6.75,70,/8mnCtQngfhYt0W0BmkrCePutmvy.jpg,hi,35,medium
+306,Maidaan,,2024,668340,5.2604,7.925,20,/eKbAVKQf6choCfasNWuYoSTOPBP.jpg,hi,18,easy
+307,Bade Miyan Chote Miyan,,2024,936622,5.6346,6.426,47,/ote8HmQOgmoAfqFaqVKsEdgD2q4.jpg,hi,28,easy
+308,Auron Mein Kahan Dum Tha,,2024,1083590,1.5857,4.563,8,/cKvom4C6fGIM1sOKINkBi7oCqok.jpg,hi,10749|18|28,medium
+309,Vedaa,,2024,1148486,6.3557,5.842,19,/wK0p210TWMH4P3isT1bI0FVEuZ9.jpg,hi,28|18|53,easy
+310,Khel Khel Mein,,2024,1241592,3.7143,6.1,29,/32P0oQf41HXbENRGtu2h0rqBF2k.jpg,hi,35|18,easy
+311,Devara: Part 1,,2024,811941,5.2893,6.915,211,/lQfuaXjANoTsdx5iS0gCXlK9D2L.jpg,te,28|18,easy
+312,Vicky Vidya Ka Woh Wala Video,,2024,1213712,4.6592,4.885,13,/77gbFuFUfXx3OWv6pGhOAfHMBpg.jpg,hi,35,easy
+313,Bhool Bhulaiyaa 3,,2024,980599,3.8471,5.405,37,/3AfHD1HoaQpQwKH8kxRdBKVmzeU.jpg,hi,27|35,easy
+314,The Sabarmati Report,,2024,1213906,4.0091,5.5,8,/ahOWjoqGkpxpmJVPmEBkSyvLPfi.jpg,hi,18|53|80,easy
+315,Yodha,,2024,899718,4.7366,6.6,30,/rkCRwuWgrkGTya4vLqwFugwSqeh.jpg,hi,28|53,easy
+316,Razakar,,2024,1210466,1.8281,4.0,3,/ieplpESS4twYnlRTXZTyFxBzpi9.jpg,te,36|18,medium
+317,Skyforce,,2025,,0,,,,hi,,hard
+318,Emergency,,2025,1000438,4.3783,3.8,6,/yp5eg70g6LaZoBiApOv9oerzvvX.jpg,hi,18|36|10752,easy
+319,Chhava,,2025,1443010,0.0306,0.0,0,/qTn3s38GTCuS8upbCAYVpRNmzU.jpg,pa,18,hard
+320,Sikandar,,2025,1257960,4.1912,4.955,66,/41s42CRXafa3OuRGvCtfYPEBmse.jpg,hi,28|18,easy
+321,Kesari Chapter 2,,2025,1137339,1.2104,7.0,29,/jgGSqe1YgSot6Y1zDVTVkbsZ46z.jpg,hi,18|36,medium
+322,War 2,,2025,1109086,5.593,5.8,58,/fxxVbjhIOl8ZPS69dH8xeeuxvmh.jpg,hi,28|12|53,easy
+323,Housefull 5,,2025,1146210,4.3835,5.385,39,/iGvGkVOfsooO0ZBrhN5i6zXYUCy.jpg,hi,35|9648|53,easy
+324,Jolly LLB 3,,2025,1015981,3.7934,6.3,32,/bwRoU9p5GvjxgPfmIgsfcJ4ydng.jpg,hi,18|35,easy
+325,Welcome 3,,2025,353486,6.8829,6.817,14329,/pSgXKPU5h6U89ipF7HBYajvYt7j.jpg,en,12|35|14|28,easy
+326,Deva,,2025,811941,5.2893,6.915,211,/lQfuaXjANoTsdx5iS0gCXlK9D2L.jpg,te,28|18,easy
+327,Azaad,,2025,1379877,5.7001,6.7,11,/yWFpiJcUJfXRbm3om48kNJ0MU7A.jpg,hi,18|28,easy
+328,Mere Husband Ki Biwi,,2025,1196942,4.0369,5.8,8,/fQMBYG4JOD6WN8QzViPYqxuIsru.jpg,hi,35,easy
+329,Main Atal Hoon,,2024,1066714,2.2069,5.8,70,/tBiTGjPXGXHpdyPRKSVfAYqxz6R.jpg,hi,18,medium
+330,Laapataa Ladies,,2024,1163194,4.6182,7.786,138,/cGG5hCwPnMvuKzvUBnxo5y3DcVM.jpg,hi,35|18|10749,easy
+331,Do Aur Do Pyaar,,2024,951015,1.7572,5.4,5,/2eDWmo69uPMKPzxVY5KKkf8vOMi.jpg,hi,10749|35|18,medium
+332,Chandu Champion,,2024,1020951,6.9365,7.242,31,/AprEYzaWgMuSQtJXMxz1P5Z3e3P.jpg,hi,18,easy
+333,Kill,,2024,1160018,7.0683,7.12,466,/m2zXTuNPkywdYLyWlVyJZW2QOJH.jpg,hi,28|80|53|18,easy
+334,Ulajh,,2024,1124876,2.9861,5.462,13,/tRTaE89m8As6G6aqgYjCBmm6MKN.jpg,hi,18|53,medium
+335,Kanguva,,2024,622792,3.303,3.692,26,/lycbTFBXqFN1kMdPEsnAFutKEEy.jpg,ta,28|53|14,medium
+336,The Buckingham Murders,,2024,1053348,0.7603,5.8,20,/opWu2Qf1g5OfAWP4HdmH4ildwuV.jpg,en,80|9648|53,hard
+337,Tum Bin 2,,2016,426785,0.522,6.8,12,/ApJyLoGxBffPwiWYe7qeLLUjObb.jpg,hi,18|10749,hard
+338,Sultan,,2016,376812,4.9706,6.903,252,/vPTYtKuV8X5uUd3SqnzO14W6Dti.jpg,hi,18|28|10749,easy
+339,Rustom,,2016,392572,7.215,6.694,134,/xwf74VcrHu1etzOsRVx7nckPPLR.jpg,hi,53|18|80,easy
+340,M.S. Dhoni: The Untold Story,,2016,388333,3.3481,7.258,196,/lUpMckVHaB55YJ3SMK0arwxKmCt.jpg,hi,18,medium
+341,Ae Dil Hai Mushkil,,2016,393445,4.4845,6.416,215,/hlDOF4UhUqrYY7gqLk3Rl0Fx4ns.jpg,hi,10749|18,easy
+342,Dangal,,2016,360814,4.9067,7.9,1121,/1CoKNi3XVyijPCvy0usDbSWEXAg.jpg,hi,18|10751|35,easy
+343,Raees,,2017,363343,8.3237,6.7,245,/zFYFUfnoXWxeA3n7v4acEqgk2iE.jpg,hi,53|28|80,easy
+344,Jolly LLB 2,,2017,412090,3.6127,6.902,153,/n9MjoGmaYagaaETCQP0S6Ch3JLH.jpg,hi,35|80,easy
+345,Badrinath Ki Dulhania,,2017,413646,1.1622,6.4,141,/e1tV7gYSF5iw8NPR78sUHNb3YLU.jpg,hi,18|35|10749,medium
+346,Toilet: Ek Prem Katha,,2017,441875,3.7551,6.817,213,/8YUBka56t4HcHLVMGnGA1WizpMV.jpg,hi,35|18|10749,easy
+347,Tiger Zinda Hai,,2017,441909,5.7281,6.265,170,/mdzNLFfCfuBoJz43l0SmMWWdu5t.jpg,hi,28|12|53,easy
+348,Judwaa 2,,2017,456565,3.9099,5.4,112,/3BlL1cbOTkzHSXTy3Lw95OfiCKX.jpg,hi,28|35|10749,easy
+349,Golmaal Again,,2017,472123,2.9078,5.4,109,/kGx26PL1v658T8XbOk5MfmNpHU3.jpg,hi,35|27|28|14,medium
+350,Secret Superstar,,2017,441889,3.2504,7.268,190,/fkTeziNtc0uwE899uI1hlMOEdZL.jpg,hi,18|10402,medium
+351,3 Idiots,,2009,20453,5.3667,7.994,2654,/66A9MqXOyVFCssoloscw79z8Tew.jpg,hi,18|35,easy
+352,Kaminey,,2009,20688,3.1122,6.7,103,/bWjpvdO7BxOOnX6RMZN4p4Jukx5.jpg,hi,28|80|18,medium
+353,De Dana Dan,,2009,25867,2.5002,5.7,95,/htOpALyz5x1Ee7YuZpaRCPEwEuX.jpg,hi,35|80,medium
+354,Wanted,,2009,8909,7.5799,6.525,7485,/cbDMsV4VJAL2xJ2JXdWWjmUXZkT.jpg,en,28|53|80,easy
+355,Ajab Prem Ki Ghazab Kahani,,2009,24827,3.2328,6.182,151,/6IC8PQZAynsUAh0MDvopR3zDTRk.jpg,hi,10749|35|28,medium
+356,Love Aaj Kal,,2009,19663,4.5019,6.22,109,/36hkylLil37eF45uIeSTe31NRVq.jpg,hi,35|18|10749,easy
+357,Main Tera Hero,,2014,262903,4.9739,5.7,192,/bupZH3i1SAaLLC0OgYMSLDZN63Q.jpg,hi,10749|35,easy
+358,Ek Villain,,2014,276935,5.4772,6.5,165,/tIMfMyCo7yeRqaRXmor5yJj14pV.jpg,hi,10749|28|80|53,easy
+359,Bang Bang,,2014,283589,5.5028,6.2,245,/6ukTOJ3VNqrR0un8nolKoIlgn1V.jpg,hi,28|12|35|10749|53,easy
+360,PK,,2014,297222,9.7671,7.697,1128,/z2x2Y4tncefsIU7h82gmUM5vnBJ.jpg,hi,35|18|878,easy
+361,Happy New Year,,2014,277432,1.6959,6.121,286,/5kv0trpR00030JmZbLnLMBKIrtD.jpg,hi,28|35|80|12,medium
+362,Haider,,2014,280795,5.8113,7.2,246,/9DFtMyYCrKOBwXQOju2PQ1RUlI9.jpg,hi,80|18,easy
+363,Queen,,2014,247645,1.9953,7.301,299,/vKLp0X2RQOuA31R3AdaYtDdKIPK.jpg,hi,35|18,medium
+364,2 States,,2014,259720,1.9058,6.5,157,/lOQqeKxZg12ZSn0qfHAOXOtbVFR.jpg,hi,35|10749|18,medium
+365,Kick,,2014,280690,1.4224,5.7,166,/muRGQIGFcHTyHimE2ru6RSjD8D6.jpg,hi,28|10749|35|80,medium
+366,Dabangg,,2010,44425,2.5575,5.8,172,/bi2J6IrRK7oFK63EMbzORIos8KP.jpg,hi,28|35|80,medium
+367,Golmaal 3,,2010,44978,1.7062,5.6,90,/S2BE87q5g8HWDVfoEU8QN9UXfn.jpg,hi,35|10751,medium
+368,Housefull,,2010,58051,4.5068,5.7,136,/koPiIQ7evC5rer6modUDxoZjYV.jpg,hi,35|10749,easy
+369,Once Upon a Time in Mumbaai,,2010,42966,4.1987,6.672,90,/qkPmQx9GMuwTDEuIUMoeN6DEqVA.jpg,hi,18|53|80,easy
+370,Anjaana Anjaani,,2010,44566,3.4847,6.0,83,/me3GHLnVREOlRdJPGmBPqsZBJTT.jpg,hi,35|18|10749,medium
+371,Raajneeti,,2010,37951,0.8759,6.262,84,/bZJeKk1vzekp2xfGecwYoUZGzoB.jpg,hi,18|53,hard
+372,Kites,,2010,37737,1.0785,7.201,219,/lYJhUIsKtlke4gNNHkYZNppYlTZ.jpg,hi,18|28|10749,medium
+373,Ishqiya,,2010,33556,5.3991,6.418,73,/zljQDSFyBvrhrzwJWNEOVyQzaIo.jpg,hi,53|35,easy
+374,My Name Is Khan,,2010,26022,2.4469,8.029,1410,/5Y36lCiNyyV71mjq6LavgiggbhT.jpg,hi,18|10749,medium
+375,Peepli Live,,2010,44549,1.265,7.315,73,/zJ1e7pmyJ8an6ZxhhjwVNvqHe7t.jpg,hi,18|35,medium
+376,Mughal-E-Azam,,1960,44519,6.1183,6.9,55,/lKfNZUh9CRp1EHjxgNGtrbvm55.jpg,hi,18|10749,easy
+377,Sholay,,1975,12259,6.0324,7.038,303,/ya9bwgqA4eNl5bQ9QqS0jcmRoBS.jpg,hi,28,easy
+378,Deewar,,1975,22460,14.8456,7.159,66,/alVHFaerbSgnuKhzSddJRNiCs8g.jpg,hi,28|80|18,easy
+379,Zanjeer,,1973,103236,3.3939,6.8,27,/durMAVvVETtevu1EDv3VIcNs7gO.jpg,hi,28,medium
+380,Don,,1978,8290,3.1364,7.9,1445,/91l4Sf3WJwrb0tSVPsOqnBXG8E6.jpg,fr,35|10752,medium
+381,Hum Aapke Hain Koun!,,1994,46387,4.5785,6.542,120,/v5CutZgZgai1if2U2CPssiig7VW.jpg,hi,18|10749|10402|10751,easy
+382,Kuch Kuch Hota Hai,,1998,11854,5.3952,7.486,423,/5FmtHHDGPofW5Zjns1EM1D8503c.jpg,hi,10749|18|35,easy
+383,Dil To Pagal Hai,,1997,13986,3.117,6.9,185,/HKUrZZbXnwCM4129fPlgHEg0eG.jpg,hi,18|10749|35,medium
+384,Mohabbatein,,2000,11518,6.1076,7.06,282,/dDsYaBazrYKg9bv8qgsEohZQMat.jpg,hi,18|10749,easy
+385,Kabhi Khushi Kabhie Gham,,2001,10757,6.3668,7.7,590,/12BvYKueY0eruZuTYIextEZaCC.jpg,hi,35|18,easy
+386,Devdas,,2002,15917,5.5074,7.5,368,/dUBFi7bnLRfm4WaTh4ZoF2tbBJj.jpg,hi,18|10749,easy
+387,Kal Ho Naa Ho,,2003,4254,5.6143,7.5,437,/zhMI6I0kSLnewTMwE0A8Tz3Cj2f.jpg,hi,35|18|10749,easy
+388,Veer-Zaara,,2004,4251,5.2777,7.4,297,/j267YqLvKAHeyykTflxzpgVgviQ.jpg,hi,18|10749,easy
+389,Bunty Aur Babli,,2005,11763,5.0225,6.3,84,/32OxUzs9ETQ3QvLFFYaDuuAtq3Y.jpg,hi,35|80|10749,easy
+390,Rang De Basanti,,2006,7913,3.0979,7.085,489,/f1bF8CHzEu621bPSIg6XiUNAabh.jpg,hi,35|18|36|10749,medium
+391,Omkara,,2006,14705,2.9094,6.879,91,/y3D8ziFHDt9wrid8XQdBC2dzGTH.jpg,hi,80|18,medium
+392,Taare Zameen Par,,2007,7508,5.0886,8.0,1299,/puHRt6Raovm5ujGCdwLWvRv4NHU.jpg,hi,18,easy
+393,Chak De! India,,2007,14163,5.5242,7.2,364,/9wP26QtbLUADWsfZZ8v2sJDWKdZ.jpg,hi,18,easy
+394,Jab We Met,,2007,11807,2.6858,7.3,310,/iqiH6vnoEgjAypKsuIScN7JlE2j.jpg,hi,18|35|10749,medium
+395,Jodhaa Akbar,,2008,14073,3.5337,7.334,271,/gPjgeywFNTlh9IUuXWy85nn4h8J.jpg,hi,10749|36|18,medium
+396,Ghajini,,2008,14070,4.5223,6.986,437,/cPLzHxPFRjzNvoyncdtDGBAxjp.jpg,hi,28|10749|53,easy
+397,Rab Ne Bana Di Jodi,,2008,14072,5.7096,7.097,308,/m8x6I2qf3R98HtF4DmJXcdxCU64.jpg,hi,35|18|10749,easy
+398,Rock On!!,,2008,19672,0.9156,6.824,105,/cckTZXVpchMrljPouFf7u2wqUTX.jpg,hi,18,hard
+399,Singh Is Kinng,,2008,12273,0.6828,5.631,107,/vR6XqJJ3Is6C3pteQ5lv54Y3Lk6.jpg,hi,28|35,hard
+400,Fashion,,2008,19624,2.8158,6.457,93,/6PQyJUJ3Ny1AZegtL5OkUATCIcr.jpg,hi,18|10749,medium

@@ -8,7 +8,8 @@ from typing import Any
 
 from flask import Blueprint, current_app, jsonify, request
 
-from app.services.csv_fallback import load_movies
+from app.services.csv_fallback import find_movie_by_title, load_movies
+from app.services.openai_engine import generate_movie_batch
 from app.services.tmdb import TMDBClient
 
 logger = logging.getLogger(__name__)
@@ -130,3 +131,84 @@ def get_random_movie() -> tuple:  # type: ignore[type-arg]
 
     movie = random.choice(movies)
     return jsonify({"movie": movie, "source": source_used}), 200
+
+
+@movies_bp.post("/movies/ai-generate")
+def ai_generate() -> tuple:  # type: ignore[type-arg]
+    """
+    AI game engine: OpenAI generates movie batch; TMDB or CSV validates.
+    Body: { model?, difficulty, era, language, batch_size? }
+    Headers: X-OpenAI-Key (optional, overrides env), X-TMDB-Key (optional, overrides env)
+    """
+    openai_key: str = request.headers.get("X-OpenAI-Key", "").strip() or current_app.config.get(
+        "OPENAI_API_KEY", ""
+    )
+    if not openai_key:
+        return jsonify({"error": "OpenAI API key required"}), 400
+
+    tmdb_key: str = request.headers.get("X-TMDB-Key", "").strip() or current_app.config.get(
+        "TMDB_API_KEY", ""
+    )
+
+    body = request.get_json(silent=True) or {}
+    model = (body.get("model") or current_app.config.get("OPENAI_MODEL", "gpt-4.1-mini")).strip()
+    difficulty = (body.get("difficulty") or "medium").strip()
+    era = (body.get("era") or "all").strip()
+    language = (body.get("language") or "all").strip()
+    try:
+        batch_size = min(int(body.get("batch_size", 15)), 25)
+    except (TypeError, ValueError):
+        batch_size = 15
+    if difficulty not in ("easy", "medium", "hard"):
+        difficulty = "medium"
+    if era not in ("all", "90s", "2000s", "2010s", "2020s"):
+        era = "all"
+    lang_param = "hindi" if language == "hindi" else "all"
+
+    try:
+        suggestions, token_usage = generate_movie_batch(
+            api_key=openai_key,
+            model=model,
+            difficulty=difficulty,
+            era=era,
+            language=lang_param,
+            batch_size=batch_size,
+        )
+    except Exception as exc:
+        logger.warning("OpenAI generate_movie_batch failed: %s", exc)
+        return jsonify({"error": "AI generation failed"}), 502
+
+    validated: list[dict[str, Any]] = []
+    if tmdb_key:
+        client = TMDBClient(
+            api_key=tmdb_key,
+            base_url=current_app.config.get("TMDB_BASE_URL", "https://api.themoviedb.org/3"),
+        )
+        try:
+            for s in suggestions:
+                movie = client.search_movie(s["title"], s.get("year"))
+                if movie:
+                    movie["source"] = "ai"
+                    movie["ai_hints"] = s.get("hints") or {}
+                    validated.append(movie)
+        except Exception as exc:
+            logger.warning("TMDB validation during AI generate failed: %s", exc)
+        finally:
+            client.close()
+    else:
+        csv_movies = _get_csv_movies()
+        for s in suggestions:
+            movie = find_movie_by_title(csv_movies, s["title"], s.get("year"))
+            if movie:
+                movie = dict(movie)
+                movie["source"] = "ai"
+                movie["ai_hints"] = s.get("hints") or {}
+                validated.append(movie)
+
+    # If we got too few, still return what we have (frontend can fall back to GET /movies)
+    return jsonify({
+        "movies": validated,
+        "source": "ai",
+        "total": len(validated),
+        "token_usage": token_usage,
+    }), 200

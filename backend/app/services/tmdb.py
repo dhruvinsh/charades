@@ -106,3 +106,23 @@ class TMDBClient:
             lang_filter,
         )
         return all_movies
+
+    def search_movie(self, title: str, year: int | None = None) -> dict[str, Any] | None:
+        """
+        Search TMDB for a movie by title (optional year). Returns normalized movie dict or None.
+        """
+        params: dict[str, Any] = {
+            "query": title,
+            "include_adult": "false",
+        }
+        if year is not None:
+            params["year"] = year
+        try:
+            data = self._get("/search/movie", params=params)
+            results = data.get("results", [])
+            if not results:
+                return None
+            return _parse_movie(results[0])
+        except Exception as exc:
+            logger.debug("TMDB search failed for %r: %s", title, exc)
+            return None

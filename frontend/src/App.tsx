@@ -92,6 +92,8 @@ export default function App() {
             phase={game.phase}
             settings={settings}
             totalSeen={game.totalMoviesSeen}
+            timeLeft={game.timeLeft}
+            totalTime={settings.timerSeconds}
           />
         )}
 

@@ -11,9 +11,14 @@ interface GameStore {
   game: GameState
   moviePool: Movie[]
   poolIndex: number
+  aiTokenUsage: { totalPrompt: number; totalCompletion: number }
 
   // Settings actions
   updateSettings: (patch: Partial<GameSettings>) => void
+
+  // Token usage (AI cost counter)
+  addTokenUsage: (prompt: number, completion: number) => void
+  resetTokenUsage: () => void
 
   // Pool actions
   setMoviePool: (movies: Movie[]) => void
@@ -48,9 +53,23 @@ export const useGameStore = create<GameStore>()(
       game: { ...INITIAL_GAME },
       moviePool: [],
       poolIndex: 0,
+      aiTokenUsage: { totalPrompt: 0, totalCompletion: 0 },
 
       updateSettings: (patch) => {
         set((s) => ({ settings: { ...s.settings, ...patch } }))
+      },
+
+      addTokenUsage: (prompt, completion) => {
+        set((s) => ({
+          aiTokenUsage: {
+            totalPrompt: s.aiTokenUsage.totalPrompt + prompt,
+            totalCompletion: s.aiTokenUsage.totalCompletion + completion,
+          },
+        }))
+      },
+
+      resetTokenUsage: () => {
+        set({ aiTokenUsage: { totalPrompt: 0, totalCompletion: 0 } })
       },
 
       setMoviePool: (movies) => {
@@ -149,7 +168,7 @@ export const useGameStore = create<GameStore>()(
     {
       name: 'charades-settings',
       storage: createJSONStorage(() => localStorage),
-      partialize: (s) => ({ settings: s.settings }),
+      partialize: (s) => ({ settings: s.settings, aiTokenUsage: s.aiTokenUsage }),
     },
   ),
 )

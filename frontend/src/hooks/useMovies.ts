@@ -1,9 +1,9 @@
 /**
- * useMovies — fetches movies from API, caches in Dexie, applies filters.
+ * useMovies — fetches movies from API (AI or TMDB/CSV), caches in Dexie, applies filters.
  */
 import { useEffect, useState, useCallback, useRef } from 'react'
 import type { Movie, GameSettings } from '@/types'
-import { fetchMovies } from '@/services/api'
+import { fetchMovies, generateAiMovies } from '@/services/api'
 import {
   cacheMovies,
   getCachedMovies,
@@ -16,7 +16,7 @@ import { useGameStore } from '@/store/gameStore'
 interface UseMoviesReturn {
   loading: boolean
   error: string | null
-  source: 'tmdb' | 'csv' | null
+  source: 'tmdb' | 'csv' | 'ai' | null
   totalMovies: number
   refresh: () => Promise<void>
 }
@@ -62,29 +62,55 @@ function applyFilters(movies: Movie[], settings: GameSettings): Movie[] {
 export function useMovies(): UseMoviesReturn {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [source, setSource] = useState<'tmdb' | 'csv' | null>(null)
+  const [source, setSource] = useState<'tmdb' | 'csv' | 'ai' | null>(null)
   const [totalMovies, setTotalMovies] = useState(0)
   const { settings, setMoviePool } = useGameStore()
   const settingsRef = useRef(settings)
   settingsRef.current = settings
 
-  const loadAndFilter = useCallback(async (allMovies: Movie[], src: 'tmdb' | 'csv') => {
-    const filtered = applyFilters(allMovies, settingsRef.current)
-    setMoviePool(filtered)
-    setSource(src)
-    setTotalMovies(filtered.length)
-  }, [setMoviePool])
+  const loadAndFilter = useCallback(
+    async (allMovies: Movie[], src: 'tmdb' | 'csv' | 'ai') => {
+      const filtered =
+        src === 'ai' ? shuffle(allMovies) : applyFilters(allMovies, settingsRef.current)
+      setMoviePool(filtered)
+      setSource(src)
+      setTotalMovies(filtered.length)
+    },
+    [setMoviePool],
+  )
+
+  const { addTokenUsage } = useGameStore()
 
   const refresh = useCallback(async () => {
     setLoading(true)
     setError(null)
+    const openaiKey = (settings.openaiApiKey ?? '').trim()
     try {
-      // Try API first
+      if (openaiKey) {
+        try {
+          const res = await generateAiMovies({
+            model: settings.openaiModel || 'gpt-4.1-mini',
+            difficulty: settings.popularityTier,
+            era: settings.era,
+            language: settings.languageFilter,
+            batch_size: 15,
+            openaiApiKey: openaiKey,
+            tmdbApiKey: (settings.tmdbApiKey ?? '').trim() || undefined,
+          })
+          await cacheMovies(res.movies)
+          await loadAndFilter(res.movies, 'ai')
+          addTokenUsage(res.token_usage.prompt_tokens, res.token_usage.completion_tokens)
+          setLoading(false)
+          return
+        } catch (aiErr) {
+          console.warn('AI generate failed, falling back to movies API:', aiErr)
+        }
+      }
       const res = await fetchMovies({
         hindi_only: settings.languageFilter === 'hindi',
         pages: 5,
         source: 'auto',
-        tmdbApiKey: settings.tmdbApiKey || undefined,
+        tmdbApiKey: (settings.tmdbApiKey ?? '').trim() || undefined,
       })
       await cacheMovies(res.movies)
       await loadAndFilter(res.movies, res.source)
@@ -93,7 +119,8 @@ export function useMovies(): UseMoviesReturn {
       try {
         const cached = await getCachedMovies()
         if (cached.length > 0) {
-          await loadAndFilter(cached, cached[0]?.source ?? 'csv')
+          const src = cached[0]?.source ?? 'csv'
+          await loadAndFilter(cached, src)
         } else {
           setError('Unable to load movies. Please check your connection.')
         }
@@ -104,7 +131,16 @@ export function useMovies(): UseMoviesReturn {
     } finally {
       setLoading(false)
     }
-  }, [settings.languageFilter, settings.tmdbApiKey, loadAndFilter])
+  }, [
+    settings.openaiApiKey,
+    settings.openaiModel,
+    settings.tmdbApiKey,
+    settings.languageFilter,
+    settings.popularityTier,
+    settings.era,
+    loadAndFilter,
+    addTokenUsage,
+  ])
 
   // Initial load
   useEffect(() => {
@@ -135,7 +171,7 @@ export function useMovies(): UseMoviesReturn {
 
   useEffect(() => {
     refresh().catch(console.error)
-  }, [settings.tmdbApiKey]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [settings.tmdbApiKey, settings.openaiApiKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return { loading, error, source, totalMovies, refresh }
 }

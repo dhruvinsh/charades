@@ -1,5 +1,11 @@
 /** Shared TypeScript types for Charades */
 
+export interface AiHints {
+  tagline?: string
+  actor_clue?: string
+  famous_dialogue?: string
+}
+
 export interface Movie {
   id: string
   title: string
@@ -8,9 +14,17 @@ export interface Movie {
   original_language: string
   popularity: number
   poster_path: string | null
-  source: 'tmdb' | 'csv'
+  source: 'tmdb' | 'csv' | 'ai'
   era: '90s' | '2000s' | '2010s' | '2020s' | 'unknown'
   tmdb_id?: number
+  difficulty?: 'easy' | 'medium' | 'hard'
+  ai_hints?: AiHints
+}
+
+export interface TokenUsage {
+  prompt_tokens: number
+  completion_tokens: number
+  model: string
 }
 
 export type Era = 'all' | '90s' | '2000s' | '2010s' | '2020s'
@@ -24,7 +38,9 @@ export interface GameSettings {
   popularityTier: PopularityTier
   skipLimit: number | null // null = unlimited
   hintsEnabled: boolean
-  tmdbApiKey: string // user-supplied TMDB key (stored in localStorage, sent via header)
+  tmdbApiKey: string
+  openaiApiKey: string
+  openaiModel: string
 }
 
 export interface GameState {
@@ -44,4 +60,6 @@ export const DEFAULT_SETTINGS: GameSettings = {
   skipLimit: 3,
   hintsEnabled: true,
   tmdbApiKey: '',
+  openaiApiKey: '',
+  openaiModel: 'gpt-4.1-mini',
 }

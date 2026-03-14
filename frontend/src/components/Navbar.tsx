@@ -1,11 +1,11 @@
 import type { FC } from 'react'
-import { Film, RefreshCw, Settings, DatabaseZap, Wifi } from 'lucide-react'
+import { Film, RefreshCw, Settings, DatabaseZap, Wifi, Sparkles } from 'lucide-react'
 
 interface NavbarProps {
   onSettingsOpen: () => void
   onRefresh: () => void
   loading: boolean
-  source: 'tmdb' | 'csv' | null
+  source: 'tmdb' | 'csv' | 'ai' | null
 }
 
 const Navbar: FC<NavbarProps> = ({ onSettingsOpen, onRefresh, loading, source }) => {
@@ -18,6 +18,15 @@ const Navbar: FC<NavbarProps> = ({ onSettingsOpen, onRefresh, loading, source })
             Charades
           </span>
           <span className="text-xs text-slate-400 font-mono mt-0.5">v2.0</span>
+          {source === 'ai' && (
+            <span
+              title="AI game engine (OpenAI + TMDB or CSV)"
+              className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-violet-500/15 border border-violet-500/30 text-violet-400 text-xs font-medium"
+            >
+              <Sparkles className="w-3 h-3" />
+              AI Engine
+            </span>
+          )}
           {source === 'csv' && (
             <span
               title="TMDB unavailable — using bundled CSV movie list"

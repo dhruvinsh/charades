@@ -45,3 +45,4 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+.cursor/hooks/state/continual-learning.json

@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+from unittest.mock import patch
+
 import pytest
 from flask.testing import FlaskClient
 
 from app.config import Config
 from app.main import create_app
+from app.services.csv_fallback import find_movie_by_title, load_movies
 
 
 @pytest.fixture()
@@ -136,3 +139,82 @@ def test_x_tmdb_key_header_overrides_empty_env_key(client: FlaskClient) -> None:
         headers={"X-TMDB-Key": "fake-key-xyz"},
     )
     assert resp.status_code == 200
+
+
+# ---------------------------------------------------------------------------
+# POST /api/movies/ai-generate
+# ---------------------------------------------------------------------------
+
+
+def test_ai_generate_requires_openai_key(client: FlaskClient) -> None:
+    """Without OpenAI key (header or env), ai-generate returns 400."""
+    resp = client.post(
+        "/api/movies/ai-generate",
+        json={"difficulty": "medium", "era": "all", "language": "all"},
+        headers={"Content-Type": "application/json"},
+    )
+    assert resp.status_code == 400
+    data = resp.get_json()
+    assert data and "error" in data
+
+
+def test_ai_generate_accepts_key_and_returns_shape(client: FlaskClient) -> None:
+    """With OpenAI key and mocked batch, response has movies, source, total, token_usage."""
+    suggestions = [
+        {
+            "title": "War",
+            "year": 2019,
+            "language": "hi",
+            "hints": {"tagline": "A spy thriller", "actor_clue": "Hrithik", "famous_dialogue": None},
+        },
+    ]
+    token_usage = {"prompt_tokens": 100, "completion_tokens": 200, "model": "gpt-4.1-mini"}
+    with patch("app.routes.movies.generate_movie_batch", return_value=(suggestions, token_usage)):
+        resp = client.post(
+            "/api/movies/ai-generate",
+            json={"difficulty": "medium", "era": "all", "language": "all"},
+            headers={
+                "Content-Type": "application/json",
+                "X-OpenAI-Key": "sk-fake",
+            },
+        )
+    assert resp.status_code == 200
+    data = resp.get_json()
+    assert "movies" in data
+    assert "source" in data
+    assert data["source"] == "ai"
+    assert "total" in data
+    assert "token_usage" in data
+    assert data["token_usage"]["prompt_tokens"] == 100
+    assert data["token_usage"]["completion_tokens"] == 200
+    # War is in CSV so we should get one validated movie
+    assert data["total"] >= 1
+    assert len(data["movies"]) >= 1
+    movie = data["movies"][0]
+    assert movie.get("title") == "War"
+    assert movie.get("ai_hints") is not None
+
+
+# ---------------------------------------------------------------------------
+# CSV find_movie_by_title
+# ---------------------------------------------------------------------------
+
+
+def test_find_movie_by_title_exact() -> None:
+    """find_movie_by_title finds a movie by exact title match."""
+    movies = load_movies()
+    assert len(movies) > 0
+    # Use a title we know is in the CSV (from the first lines of movies.csv)
+    found = find_movie_by_title(movies, "War", 2019)
+    assert found is not None
+    assert found.get("title") == "War"
+    assert found.get("year") == 2019
+
+
+def test_find_movie_by_title_substring() -> None:
+    """find_movie_by_title can match by substring."""
+    movies = load_movies()
+    # "Dil" might match "Dil" or similar in CSV
+    found = find_movie_by_title(movies, "Dil", None)
+    assert found is not None
+    assert "title" in found

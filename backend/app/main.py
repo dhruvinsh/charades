@@ -37,6 +37,8 @@ def create_app(config: Config | None = None) -> Flask:
     app.config["TMDB_IMAGE_BASE_URL"] = cfg.TMDB_IMAGE_BASE_URL
     app.config["TMDB_LANGUAGES"] = cfg.TMDB_LANGUAGES
     app.config["TMDB_PAGES_PER_BATCH"] = cfg.TMDB_PAGES_PER_BATCH
+    app.config["OPENAI_API_KEY"] = cfg.OPENAI_API_KEY
+    app.config["OPENAI_MODEL"] = cfg.OPENAI_MODEL
     app.config["DEBUG"] = cfg.DEBUG
 
     # CORS — allow Vite dev server in development

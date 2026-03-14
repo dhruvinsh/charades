@@ -1,15 +1,26 @@
 import type { FC } from 'react'
 import { useState } from 'react'
-import { X, Clock, Calendar, Flame, SkipForward, Lightbulb, Globe, KeyRound, Eye, EyeOff } from 'lucide-react'
+import { X, Clock, Calendar, Flame, SkipForward, Lightbulb, Globe, KeyRound, Eye, EyeOff, Sparkles } from 'lucide-react'
 import type { Era, PopularityTier, LanguageFilter } from '@/types'
 import { useGameStore } from '@/store/gameStore'
 
 interface SettingsPanelProps {
   open: boolean
   onClose: () => void
-  source: 'tmdb' | 'csv' | null
+  source: 'tmdb' | 'csv' | 'ai' | null
   totalMovies: number
 }
+
+// Approximate $ per 1M tokens (gpt-4.1-mini: input $0.40, output $1.60)
+function estimateCost(promptTokens: number, completionTokens: number): number {
+  return (promptTokens / 1e6) * 0.4 + (completionTokens / 1e6) * 1.6
+}
+
+const OPENAI_MODEL_OPTIONS = [
+  { label: 'gpt-4.1-mini', value: 'gpt-4.1-mini' },
+  { label: 'gpt-4.1-nano', value: 'gpt-4.1-nano' },
+  { label: 'gpt-4.1', value: 'gpt-4.1' },
+]
 
 const TIMER_OPTIONS = [
   { label: '30s', value: 30 },
@@ -119,8 +130,12 @@ const SettingRow: FC<{ icon: React.ReactNode; label: string; children: React.Rea
 )
 
 const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMovies }) => {
-  const { settings, updateSettings } = useGameStore()
+  const { settings, updateSettings, aiTokenUsage, resetTokenUsage } = useGameStore()
   const [showKey, setShowKey] = useState(false)
+  const [showOpenAIKey, setShowOpenAIKey] = useState(false)
+  const hasOpenAI = (settings.openaiApiKey ?? '').trim().length > 0
+  const usage = aiTokenUsage ?? { totalPrompt: 0, totalCompletion: 0 }
+  const estimatedCost = estimateCost(usage.totalPrompt, usage.totalCompletion)
 
   if (!open) return null
 
@@ -149,10 +164,18 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
           {/* Source badge */}
           {source && (
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/60 border border-slate-700/40">
-              <div className={`w-2 h-2 rounded-full ${source === 'tmdb' ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+              <div
+                className={`w-2 h-2 rounded-full ${
+                  source === 'ai' ? 'bg-violet-400' : source === 'tmdb' ? 'bg-emerald-400' : 'bg-amber-400'
+                }`}
+              />
               <span className="text-xs text-slate-400">
-                {source === 'tmdb' ? 'TMDB live data' : 'Offline CSV fallback'} ·{' '}
-                <strong className="text-slate-200">{totalMovies}</strong> movies loaded
+                {source === 'ai'
+                  ? 'AI Engine'
+                  : source === 'tmdb'
+                    ? 'TMDB live data'
+                    : 'Offline CSV fallback'}{' '}
+                · <strong className="text-slate-200">{totalMovies}</strong> movies loaded
               </span>
             </div>
           )}
@@ -238,6 +261,82 @@ const SettingsPanel: FC<SettingsPanelProps> = ({ open, onClose, source, totalMov
             </div>
             <p className="text-xs text-slate-500">
               Hints show word count and release year
+            </p>
+          </SettingRow>
+
+          {/* AI Game Engine */}
+          <SettingRow icon={<Sparkles className="w-4 h-4" />} label="AI Game Engine">
+            <div className="space-y-3">
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <input
+                    type={showOpenAIKey ? 'text' : 'password'}
+                    value={settings.openaiApiKey ?? ''}
+                    onChange={(e) => updateSettings({ openaiApiKey: e.target.value.trim() })}
+                    placeholder="OpenAI API key (optional)"
+                    spellCheck={false}
+                    autoComplete="off"
+                    className="w-full px-3 py-1.5 pr-9 rounded-lg text-sm bg-slate-700/50 border border-slate-600/50 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 font-mono"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowOpenAIKey((v) => !v)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors"
+                    title={showOpenAIKey ? 'Hide key' : 'Show key'}
+                  >
+                    {showOpenAIKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+                {(settings.openaiApiKey ?? '').trim() && (
+                  <button
+                    type="button"
+                    onClick={() => updateSettings({ openaiApiKey: '' })}
+                    className="px-3 py-1.5 rounded-lg text-sm bg-slate-700/50 border border-slate-600/50 text-slate-400 hover:text-rose-400 hover:border-rose-500/40 transition-colors"
+                    title="Clear OpenAI key"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2 items-center">
+                <span className="text-xs text-slate-400">Model:</span>
+                {OPENAI_MODEL_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => updateSettings({ openaiModel: opt.value })}
+                    className={`px-2.5 py-1 rounded text-xs font-medium border transition-all ${
+                      (settings.openaiModel ?? 'gpt-4.1-mini') === opt.value
+                        ? 'bg-amber-500 text-slate-900 border-amber-500'
+                        : 'bg-slate-700/50 text-slate-400 border-slate-600/50 hover:border-amber-500/50'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+              <div className="flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg bg-slate-800/40 border border-slate-700/40">
+                <span className="text-xs text-slate-400">
+                  Tokens: <strong className="text-slate-200">{usage.totalPrompt}</strong> prompt +{' '}
+                  <strong className="text-slate-200">{usage.totalCompletion}</strong> completion
+                  {estimatedCost > 0 && (
+                    <span className="ml-1">
+                      (~${estimatedCost.toFixed(4)})
+                    </span>
+                  )}
+                </span>
+                <button
+                  type="button"
+                  onClick={resetTokenUsage}
+                  className="text-xs text-slate-500 hover:text-amber-400 transition-colors"
+                >
+                  Reset counter
+                </button>
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 mt-1.5">
+              {hasOpenAI
+                ? 'OpenAI curates movies by difficulty and adds richer hints. TMDB or CSV validates titles.'
+                : 'Set an OpenAI key to use the AI game engine. Keys stored locally only.'}
             </p>
           </SettingRow>
 

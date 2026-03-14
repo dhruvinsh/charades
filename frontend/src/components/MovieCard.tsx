@@ -7,6 +7,9 @@ interface MovieCardProps {
   phase: 'idle' | 'playing' | 'paused' | 'finished'
   settings: GameSettings
   totalSeen: number
+  /** For progressive AI hints: time left and total timer seconds */
+  timeLeft?: number
+  totalTime?: number
 }
 
 const TMDB_IMG_BASE = 'https://image.tmdb.org/t/p/w500'
@@ -23,13 +26,25 @@ const PopularityBadge: FC<{ tier: GameSettings['popularityTier'] }> = ({ tier })
   )
 }
 
-const MovieCard: FC<MovieCardProps> = ({ movie, phase, settings, totalSeen }) => {
+const MovieCard: FC<MovieCardProps> = ({
+  movie,
+  phase,
+  settings,
+  totalSeen,
+  timeLeft = 0,
+  totalTime = 120,
+}) => {
   const isEmpty = !movie
   const isIdle = phase === 'idle'
   const isFinished = phase === 'finished'
 
   const wordCount = movie ? movie.title.split(/\s+/).filter(Boolean).length : 0
   const showHints = settings.hintsEnabled && !isIdle && !isEmpty
+  const hasAiHints = showHints && movie?.ai_hints && totalTime > 0
+  const elapsedRatio = hasAiHints ? (totalTime - timeLeft) / totalTime : 0
+  const showTagline = hasAiHints && elapsedRatio >= 0.25 && movie.ai_hints?.tagline
+  const showActorClue = hasAiHints && elapsedRatio >= 0.5 && movie.ai_hints?.actor_clue
+  const showFamousDialogue = hasAiHints && elapsedRatio >= 0.75 && movie.ai_hints?.famous_dialogue
 
   return (
     <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
@@ -88,7 +103,24 @@ const MovieCard: FC<MovieCardProps> = ({ movie, phase, settings, totalSeen }) =>
                         {movie.year}
                       </span>
                     )}
-                    <PopularityBadge tier={settings.popularityTier} />
+                    {!movie?.ai_hints && (
+                      <PopularityBadge tier={settings.popularityTier} />
+                    )}
+                    {showTagline && (
+                      <span className="text-xs bg-violet-700/40 text-violet-200 px-2.5 py-1 rounded-full border border-violet-500/30 transition-opacity duration-300">
+                        {movie.ai_hints?.tagline}
+                      </span>
+                    )}
+                    {showActorClue && (
+                      <span className="text-xs bg-violet-700/40 text-violet-200 px-2.5 py-1 rounded-full border border-violet-500/30 transition-opacity duration-300">
+                        {movie.ai_hints?.actor_clue}
+                      </span>
+                    )}
+                    {showFamousDialogue && (
+                      <span className="text-xs bg-amber-700/40 text-amber-200 px-2.5 py-1 rounded-full border border-amber-500/30 transition-opacity duration-300 italic">
+                        "{movie.ai_hints?.famous_dialogue}"
+                      </span>
+                    )}
                   </>
                 ) : null}
               </div>

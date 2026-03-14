@@ -25,6 +25,10 @@ class Config:
     TMDB_PAGES_PER_BATCH: int = field(
         default_factory=lambda: int(os.environ.get("TMDB_PAGES_PER_BATCH", "5"))
     )
+    OPENAI_API_KEY: str = field(default_factory=lambda: os.environ.get("OPENAI_API_KEY", ""))
+    OPENAI_MODEL: str = field(
+        default_factory=lambda: os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
+    )
     FLASK_ENV: str = field(default_factory=lambda: os.environ.get("FLASK_ENV", "production"))
     CORS_ORIGINS: str = field(
         default_factory=lambda: os.environ.get("CORS_ORIGINS", "http://localhost:5173")
@@ -37,3 +41,7 @@ class Config:
     @property
     def tmdb_enabled(self) -> bool:
         return bool(self.TMDB_API_KEY)
+
+    @property
+    def openai_enabled(self) -> bool:
+        return bool(self.OPENAI_API_KEY)

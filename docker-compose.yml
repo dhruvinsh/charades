@@ -1,3 +1,5 @@
+# Optional .env vars: SECRET_KEY, TMDB_API_KEY, OPENAI_API_KEY, OPENAI_MODEL (gpt-4.1-mini).
+# Keys in .env are used when the client does not send X-TMDB-Key / X-OpenAI-Key.
 services:
   charades:
     build:
