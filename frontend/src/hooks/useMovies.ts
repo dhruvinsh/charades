@@ -7,11 +7,17 @@ import { fetchMovies, generateAiMovies } from '@/services/api'
 import {
   cacheMovies,
   getCachedMovies,
-  hasFreshCache,
   shuffle,
   prunePlayHistory,
 } from '@/db/dexie'
 import { useGameStore } from '@/store/gameStore'
+import {
+  buildSettingsCacheKey,
+  getQueueEntry,
+  getQueueMovieIds,
+  saveQueueFromMovies,
+  setQueueMovieIds,
+} from '@/services/localMovieCache'
 
 interface UseMoviesReturn {
   loading: boolean
@@ -64,65 +70,192 @@ export function useMovies(): UseMoviesReturn {
   const [error, setError] = useState<string | null>(null)
   const [source, setSource] = useState<'tmdb' | 'csv' | 'ai' | null>(null)
   const [totalMovies, setTotalMovies] = useState(0)
-  const { settings, setMoviePool, serverConfig } = useGameStore()
+  const { settings, setMoviePool, serverConfig, setActiveCacheKey } = useGameStore()
   const settingsRef = useRef(settings)
+  const hasInitializedRef = useRef(false)
   settingsRef.current = settings
-
-  const loadAndFilter = useCallback(
-    async (allMovies: Movie[], src: 'tmdb' | 'csv' | 'ai') => {
-      const filtered =
-        src === 'ai' ? shuffle(allMovies) : applyFilters(allMovies, settingsRef.current)
-      setMoviePool(filtered)
-      setSource(src)
-      setTotalMovies(filtered.length)
-    },
-    [setMoviePool],
-  )
 
   const { addTokenUsage } = useGameStore()
 
-  const refresh = useCallback(async () => {
-    setLoading(true)
-    setError(null)
-    const customOpenAIKey = (settings.openaiApiKey ?? '').trim()
-    const useAi = customOpenAIKey.length > 0 || (serverConfig?.openaiKeyConfigured ?? false)
-    try {
+  const shouldUseAi = useCallback(() => {
+    const current = settingsRef.current
+    const customOpenAIKey = (current.openaiApiKey ?? '').trim()
+    return customOpenAIKey.length > 0 || (serverConfig?.openaiKeyConfigured ?? false)
+  }, [serverConfig?.openaiKeyConfigured])
+
+  const setPool = useCallback(
+    (movies: Movie[], src: 'tmdb' | 'csv' | 'ai', cacheKey: string, persistQueue: boolean) => {
+      setMoviePool(movies)
+      setSource(src)
+      setTotalMovies(movies.length)
+      setActiveCacheKey(cacheKey)
+      if (persistQueue) {
+        saveQueueFromMovies(cacheKey, movies, src)
+      }
+    },
+    [setMoviePool, setActiveCacheKey],
+  )
+
+  const buildPool = useCallback(
+    (
+      allMovies: Movie[],
+      src: 'tmdb' | 'csv' | 'ai',
+      cacheKey: string,
+      persistQueue: boolean,
+    ): Movie[] => {
+      const pool =
+        src === 'ai' ? shuffle([...allMovies]) : applyFilters(allMovies, settingsRef.current)
+      setPool(pool, src, cacheKey, persistQueue)
+      return pool
+    },
+    [setPool],
+  )
+
+  const hydrateQueueFromDexie = useCallback(
+    async (cacheKey: string): Promise<boolean> => {
+      const queueIds = getQueueMovieIds(cacheKey)
+      if (queueIds.length === 0) return false
+
+      const cached = await getCachedMovies()
+      if (cached.length === 0) return false
+
+      const byId = new Map(cached.map((movie) => [movie.id, movie] as const))
+      const hydrated: Movie[] = []
+      for (const id of queueIds) {
+        const movie = byId.get(id)
+        if (movie) hydrated.push(movie)
+      }
+      if (hydrated.length === 0) {
+        setQueueMovieIds(cacheKey, [], getQueueEntry(cacheKey)?.source ?? 'csv')
+        return false
+      }
+
+      const queueSource = getQueueEntry(cacheKey)?.source ?? hydrated[0]?.source ?? 'csv'
+      if (hydrated.length !== queueIds.length) {
+        setQueueMovieIds(
+          cacheKey,
+          hydrated.map((movie) => movie.id),
+          queueSource,
+        )
+      }
+      setPool(hydrated, queueSource, cacheKey, false)
+      return true
+    },
+    [setPool],
+  )
+
+  const hydrateFromRawCache = useCallback(
+    async (cacheKey: string, useAi: boolean): Promise<boolean> => {
+      const cached = await getCachedMovies()
+      if (cached.length === 0) return false
+
+      const current = settingsRef.current
+      const hydratedSource: 'tmdb' | 'csv' | 'ai' = useAi
+        ? 'ai'
+        : cached.some((movie) => movie.source === 'tmdb')
+          ? 'tmdb'
+          : 'csv'
+
+      let candidates: Movie[]
+      if (useAi) {
+        candidates = cached.filter((movie) => movie.source === 'ai')
+        if (current.era !== 'all') {
+          candidates = candidates.filter((movie) => movie.era === current.era)
+        }
+        if (current.languageFilter === 'hindi') {
+          candidates = candidates.filter(
+            (movie) => movie.language === 'hi' || movie.original_language === 'hi',
+          )
+        }
+        candidates = candidates.filter(
+          (movie) => !movie.difficulty || movie.difficulty === current.popularityTier,
+        )
+      } else {
+        candidates = cached.filter((movie) => movie.source !== 'ai')
+      }
+
+      if (candidates.length === 0) return false
+      const pool = buildPool(candidates, hydratedSource, cacheKey, true)
+      return pool.length > 0
+    },
+    [buildPool],
+  )
+
+  const fetchAndPopulate = useCallback(
+    async (cacheKey: string, useAi: boolean) => {
+      const current = settingsRef.current
+      const customOpenAIKey = (current.openaiApiKey ?? '').trim()
+
       if (useAi) {
         try {
           const res = await generateAiMovies({
-            model: settings.openaiModel || 'gpt-4.1-mini',
-            difficulty: settings.popularityTier,
-            era: settings.era,
-            language: settings.languageFilter,
+            model: current.openaiModel || 'gpt-4.1-mini',
+            difficulty: current.popularityTier,
+            era: current.era,
+            language: current.languageFilter,
             batch_size: 15,
             openaiApiKey: customOpenAIKey || undefined,
-            tmdbApiKey: (settings.tmdbApiKey ?? '').trim() || undefined,
+            tmdbApiKey: (current.tmdbApiKey ?? '').trim() || undefined,
           })
           await cacheMovies(res.movies)
-          await loadAndFilter(res.movies, 'ai')
+          buildPool(res.movies, 'ai', cacheKey, true)
           addTokenUsage(res.token_usage.prompt_tokens, res.token_usage.completion_tokens)
-          setLoading(false)
           return
         } catch (aiErr) {
           console.warn('AI generate failed, falling back to movies API:', aiErr)
         }
       }
+
       const res = await fetchMovies({
-        hindi_only: settings.languageFilter === 'hindi',
+        hindi_only: current.languageFilter === 'hindi',
         pages: 5,
         source: 'auto',
-        tmdbApiKey: (settings.tmdbApiKey ?? '').trim() || undefined,
+        tmdbApiKey: (current.tmdbApiKey ?? '').trim() || undefined,
       })
       await cacheMovies(res.movies)
-      await loadAndFilter(res.movies, res.source)
+      buildPool(res.movies, res.source, cacheKey, true)
+    },
+    [addTokenUsage, buildPool],
+  )
+
+  const ensureMoviesForCurrentSettings = useCallback(async () => {
+    setLoading(true)
+    setError(null)
+    const useAi = shouldUseAi()
+    const cacheKey = buildSettingsCacheKey(settingsRef.current, useAi)
+
+    try {
+      const queueHydrated = await hydrateQueueFromDexie(cacheKey)
+      if (queueHydrated) return
+
+      const rawHydrated = await hydrateFromRawCache(cacheKey, useAi)
+      if (rawHydrated) return
+
+      await fetchAndPopulate(cacheKey, useAi)
     } catch (apiErr) {
-      console.warn('API fetch failed, trying Dexie cache:', apiErr)
+      console.warn('Failed to load movies for current settings:', apiErr)
+      const queueHydrated = await hydrateQueueFromDexie(cacheKey)
+      if (!queueHydrated) {
+        setError('Unable to load movies. Please check your connection.')
+      }
+    } finally {
+      setLoading(false)
+    }
+  }, [fetchAndPopulate, hydrateFromRawCache, hydrateQueueFromDexie, shouldUseAi])
+
+  const refresh = useCallback(async () => {
+    setLoading(true)
+    setError(null)
+    const useAi = shouldUseAi()
+    const cacheKey = buildSettingsCacheKey(settingsRef.current, useAi)
+
+    try {
+      await fetchAndPopulate(cacheKey, useAi)
+    } catch (apiErr) {
+      console.warn('API fetch failed, trying settings cache:', apiErr)
       try {
-        const cached = await getCachedMovies()
-        if (cached.length > 0) {
-          const src = cached[0]?.source ?? 'csv'
-          await loadAndFilter(cached, src)
-        } else {
+        const hydrated = await hydrateQueueFromDexie(cacheKey)
+        if (!hydrated) {
           setError('Unable to load movies. Please check your connection.')
         }
       } catch (cacheErr) {
@@ -133,47 +266,35 @@ export function useMovies(): UseMoviesReturn {
       setLoading(false)
     }
   }, [
-    settings.openaiApiKey,
-    settings.openaiModel,
-    settings.tmdbApiKey,
-    settings.languageFilter,
-    settings.popularityTier,
-    settings.era,
-    serverConfig?.openaiKeyConfigured,
-    loadAndFilter,
-    addTokenUsage,
+    fetchAndPopulate,
+    hydrateQueueFromDexie,
+    shouldUseAi,
   ])
 
   // Initial load
   useEffect(() => {
     const init = async () => {
       await prunePlayHistory()
-      const fresh = await hasFreshCache()
-      if (fresh) {
-        const cached = await getCachedMovies()
-        await loadAndFilter(cached, cached[0]?.source ?? 'csv')
-      } else {
-        await refresh()
-      }
+      await ensureMoviesForCurrentSettings()
+      hasInitializedRef.current = true
     }
     init().catch(console.error)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Re-filter when settings change (without re-fetching from API).
-  // When the API key changes, do a full refresh so TMDB is re-tried.
+  // Re-load per-settings queue when filters change.
   useEffect(() => {
-    const refilter = async () => {
-      const cached = await getCachedMovies()
-      if (cached.length > 0) {
-        await loadAndFilter(cached, cached[0]?.source ?? 'csv')
-      }
-    }
-    refilter().catch(console.error)
-  }, [settings.era, settings.languageFilter, settings.popularityTier, loadAndFilter])
-
-  useEffect(() => {
-    refresh().catch(console.error)
-  }, [settings.tmdbApiKey, settings.openaiApiKey, serverConfig?.openaiKeyConfigured]) // eslint-disable-line react-hooks/exhaustive-deps
+    if (!hasInitializedRef.current) return
+    ensureMoviesForCurrentSettings().catch(console.error)
+  }, [
+    settings.era,
+    settings.languageFilter,
+    settings.popularityTier,
+    settings.openaiModel,
+    settings.tmdbApiKey,
+    settings.openaiApiKey,
+    serverConfig?.openaiKeyConfigured,
+    ensureMoviesForCurrentSettings,
+  ])
 
   return { loading, error, source, totalMovies, refresh }
 }

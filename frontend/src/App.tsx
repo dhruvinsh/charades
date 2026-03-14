@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import Navbar from '@/components/Navbar'
 import MovieCard from '@/components/MovieCard'
 import Timer from '@/components/Timer'
@@ -8,18 +8,20 @@ import { useMovies } from '@/hooks/useMovies'
 import { useTimer } from '@/hooks/useTimer'
 import { useGameStore } from '@/store/gameStore'
 import { recordPlayed } from '@/db/dexie'
+import { consumeQueueMovie, rotateQueueMovie } from '@/services/localMovieCache'
 import { getServerConfig } from '@/services/api'
 
 export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const { loading, error, source, totalMovies, refresh } = useMovies()
   const { playStart } = useTimer()
+  const timedOutMarkerRef = useRef<string | null>(null)
 
   const {
     settings,
     game,
     moviePool,
-    advancePool,
+    activeCacheKey,
     startGame,
     skipMovie,
     nextMovie,
@@ -33,25 +35,55 @@ export default function App() {
       .catch(() => setServerConfig(null))
   }, [setServerConfig])
 
-  const handleGenerate = useCallback(() => {
-    advancePool()
+  const handleGenerate = useCallback(async () => {
+    if (useGameStore.getState().moviePool.length === 0) {
+      await refresh()
+    }
+    if (useGameStore.getState().moviePool.length === 0) return
     startGame()
     playStart()
-  }, [advancePool, startGame, playStart])
+  }, [refresh, startGame, playStart])
 
   const handleSkip = useCallback(() => {
     if (game.currentMovie) {
+      if (activeCacheKey) {
+        rotateQueueMovie(activeCacheKey, game.currentMovie.id)
+      }
       recordPlayed(game.currentMovie.id, game.sessionId).catch(console.error)
     }
     skipMovie()
-  }, [game, skipMovie])
+  }, [activeCacheKey, game, skipMovie])
 
   const handleGotIt = useCallback(() => {
     if (game.currentMovie) {
+      if (activeCacheKey) {
+        consumeQueueMovie(activeCacheKey, game.currentMovie.id)
+      }
       recordPlayed(game.currentMovie.id, game.sessionId).catch(console.error)
     }
     nextMovie()
-  }, [game, nextMovie])
+    if (useGameStore.getState().moviePool.length === 0) {
+      refresh().catch(console.error)
+    }
+  }, [activeCacheKey, game, nextMovie, refresh])
+
+  useEffect(() => {
+    if (game.phase === 'playing') {
+      timedOutMarkerRef.current = null
+      return
+    }
+
+    if (game.phase !== 'finished' || game.timeLeft > 0 || !game.currentMovie || !activeCacheKey) return
+
+    const marker = `${game.sessionId}:${game.currentMovie.id}`
+    if (timedOutMarkerRef.current === marker) return
+    timedOutMarkerRef.current = marker
+
+    consumeQueueMovie(activeCacheKey, game.currentMovie.id)
+    if (useGameStore.getState().moviePool.length === 0) {
+      refresh().catch(console.error)
+    }
+  }, [activeCacheKey, game, refresh])
 
   const handleReset = useCallback(() => {
     resetGame()
