@@ -10,13 +10,14 @@ interface GameStore {
   settings: GameSettings
   game: GameState
   moviePool: Movie[]
-  poolIndex: number
+  activeCacheKey: string | null
   aiTokenUsage: { totalPrompt: number; totalCompletion: number }
   serverConfig: ServerConfig | null
 
   // Settings actions
   updateSettings: (patch: Partial<GameSettings>) => void
   setServerConfig: (config: ServerConfig | null) => void
+  setActiveCacheKey: (cacheKey: string | null) => void
 
   // Token usage (AI cost counter)
   addTokenUsage: (prompt: number, completion: number) => void
@@ -24,7 +25,6 @@ interface GameStore {
 
   // Pool actions
   setMoviePool: (movies: Movie[]) => void
-  advancePool: () => void
 
   // Game lifecycle
   startGame: () => void
@@ -54,7 +54,7 @@ export const useGameStore = create<GameStore>()(
       settings: { ...DEFAULT_SETTINGS },
       game: { ...INITIAL_GAME },
       moviePool: [],
-      poolIndex: 0,
+      activeCacheKey: null,
       aiTokenUsage: { totalPrompt: 0, totalCompletion: 0 },
       serverConfig: null,
 
@@ -64,6 +64,10 @@ export const useGameStore = create<GameStore>()(
 
       setServerConfig: (config) => {
         set({ serverConfig: config })
+      },
+
+      setActiveCacheKey: (cacheKey) => {
+        set({ activeCacheKey: cacheKey })
       },
 
       addTokenUsage: (prompt, completion) => {
@@ -80,16 +84,12 @@ export const useGameStore = create<GameStore>()(
       },
 
       setMoviePool: (movies) => {
-        set({ moviePool: movies, poolIndex: 0 })
-      },
-
-      advancePool: () => {
-        set((s) => ({ poolIndex: (s.poolIndex + 1) % Math.max(s.moviePool.length, 1) }))
+        set({ moviePool: movies })
       },
 
       startGame: () => {
-        const { settings, moviePool, poolIndex } = get()
-        const movie = moviePool[poolIndex] ?? null
+        const { settings, moviePool } = get()
+        const movie = moviePool[0] ?? null
         set({
           game: {
             phase: 'playing',
@@ -120,30 +120,36 @@ export const useGameStore = create<GameStore>()(
             skipsRemaining: settings.skipLimit,
             sessionId: makeSessionId(),
           },
-          poolIndex: 0,
         })
       },
 
       tickTimer: () => {
-        const { game } = get()
+        const { game, moviePool } = get()
         if (game.phase !== 'playing') return
         const newTime = game.timeLeft - 1
         if (newTime <= 0) {
-          set({ game: { ...game, timeLeft: 0, phase: 'finished' } })
+          const nextPool = moviePool.length > 0 ? moviePool.slice(1) : moviePool
+          set({
+            moviePool: nextPool,
+            game: { ...game, timeLeft: 0, phase: 'finished' },
+          })
         } else {
           set({ game: { ...game, timeLeft: newTime } })
         }
       },
 
       skipMovie: () => {
-        const { game, settings, moviePool, poolIndex } = get()
+        const { game, settings, moviePool } = get()
         if (game.phase !== 'playing') return
         if (settings.skipLimit !== null && (game.skipsRemaining ?? 0) <= 0) return
+        if (moviePool.length === 0) return
 
-        const newIndex = (poolIndex + 1) % Math.max(moviePool.length, 1)
-        const nextMovie = moviePool[newIndex] ?? null
+        const [current, ...rest] = moviePool
+        if (!current) return
+        const rotatedPool = [...rest, current]
+        const nextMovie = rotatedPool[0] ?? null
         set({
-          poolIndex: newIndex,
+          moviePool: rotatedPool,
           game: {
             ...game,
             currentMovie: nextMovie,
@@ -156,15 +162,16 @@ export const useGameStore = create<GameStore>()(
       },
 
       nextMovie: () => {
-        const { game, settings, moviePool, poolIndex } = get()
+        const { game, settings, moviePool } = get()
         if (game.phase !== 'playing') return
 
-        const newIndex = (poolIndex + 1) % Math.max(moviePool.length, 1)
-        const nextMovie = moviePool[newIndex] ?? null
+        const remainingPool = moviePool.length > 0 ? moviePool.slice(1) : moviePool
+        const nextMovie = remainingPool[0] ?? null
         set({
-          poolIndex: newIndex,
+          moviePool: remainingPool,
           game: {
             ...game,
+            phase: nextMovie ? 'playing' : 'finished',
             currentMovie: nextMovie,
             timeLeft: settings.timerSeconds,
             totalMoviesSeen: game.totalMoviesSeen + 1,
