@@ -1,5 +1,11 @@
 /**
  * useMovies — fetches movies from API (AI or TMDB/CSV), caches in Dexie, applies filters.
+ *
+ * Four operating modes:
+ *  1. Local-only   (no OpenAI, no TMDB): CSV; difficulty from pre-computed 'difficulty' field.
+ *  2. AI-only      (OpenAI + CSV):       AI generates titles; validated against CSV; cached.
+ *  3. TMDB-only    (TMDB, no OpenAI):    Batch discover; difficulty scored server-side.
+ *  4. AI+TMDB      (both):              Batch TMDB discover + AI hints; exclude played movies.
  */
 import { useEffect, useState, useCallback, useRef } from 'react'
 import type { Movie, GameSettings } from '@/types'
@@ -7,6 +13,7 @@ import { fetchMovies, generateAiMovies } from '@/services/api'
 import {
   cacheMovies,
   getCachedMovies,
+  getRecentlyPlayedIds,
   shuffle,
   prunePlayHistory,
 } from '@/db/dexie'
@@ -27,6 +34,11 @@ interface UseMoviesReturn {
   refresh: () => Promise<void>
 }
 
+/**
+ * Apply era/language/difficulty filters for TMDB and CSV catalog sources.
+ * For TMDB movies the server already sets a `difficulty` field; we prefer it.
+ * For CSV movies without a `difficulty` field we fall back to popularity percentile.
+ */
 function applyFilters(movies: Movie[], settings: GameSettings): Movie[] {
   let filtered = [...movies]
 
@@ -37,29 +49,35 @@ function applyFilters(movies: Movie[], settings: GameSettings): Movie[] {
 
   // Era filter
   if (settings.era !== 'all') {
-    filtered = filtered.filter((m) => m.era === settings.era)
-    // If filter is too restrictive, fall back to full list
-    if (filtered.length < 10) filtered = [...movies]
+    const byEra = filtered.filter((m) => m.era === settings.era)
+    if (byEra.length >= 10) filtered = byEra
   }
 
-  // Popularity tier
+  // Difficulty filter — prefer server-computed 'difficulty' label (TMDB mode)
+  const labelled = filtered.filter((m) => m.difficulty)
+  if (labelled.length >= 20) {
+    // Use the server-computed difficulty label
+    const tierFiltered = labelled.filter((m) => m.difficulty === settings.popularityTier)
+    if (tierFiltered.length >= 15) {
+      return shuffle(tierFiltered)
+    }
+    // Relax: return all labelled if tier is too restrictive
+    return shuffle(labelled)
+  }
+
+  // Fallback: popularity-percentile split (CSV / legacy TMDB without difficulty labels)
   if (filtered.length >= 30) {
     const sorted = [...filtered].sort((a, b) => b.popularity - a.popularity)
     const total = sorted.length
+    let sliced: Movie[]
     if (settings.popularityTier === 'easy') {
-      // Top 33%
-      filtered = sorted.slice(0, Math.ceil(total * 0.33))
+      sliced = sorted.slice(0, Math.ceil(total * 0.33))
     } else if (settings.popularityTier === 'medium') {
-      // Middle 33%
-      const start = Math.floor(total * 0.33)
-      const end = Math.floor(total * 0.67)
-      filtered = sorted.slice(start, end)
+      sliced = sorted.slice(Math.floor(total * 0.33), Math.floor(total * 0.67))
     } else {
-      // Bottom 33% (hard = obscure)
-      filtered = sorted.slice(Math.floor(total * 0.67))
+      sliced = sorted.slice(Math.floor(total * 0.67))
     }
-    // Safety: always keep at least 20 movies
-    if (filtered.length < 20) filtered = movies
+    if (sliced.length >= 15) return shuffle(sliced)
   }
 
   return shuffle(filtered)
@@ -185,9 +203,13 @@ export function useMovies(): UseMoviesReturn {
     async (cacheKey: string, useAi: boolean) => {
       const current = settingsRef.current
       const customOpenAIKey = (current.openaiApiKey ?? '').trim()
+      const tmdbApiKey = (current.tmdbApiKey ?? '').trim() || undefined
 
       if (useAi) {
         try {
+          // Gather recently played IDs to send to backend (AI+TMDB deduplication)
+          const excludeIds = await getRecentlyPlayedIds(30, ['got_it'])
+
           const res = await generateAiMovies({
             model: current.openaiModel || 'gpt-4.1-mini',
             difficulty: current.popularityTier,
@@ -195,7 +217,8 @@ export function useMovies(): UseMoviesReturn {
             language: current.languageFilter,
             batch_size: 15,
             openaiApiKey: customOpenAIKey || undefined,
-            tmdbApiKey: (current.tmdbApiKey ?? '').trim() || undefined,
+            tmdbApiKey,
+            exclude_ids: excludeIds.slice(0, 300), // cap payload size
           })
           await cacheMovies(res.movies)
           buildPool(res.movies, 'ai', cacheKey, true)
@@ -206,11 +229,14 @@ export function useMovies(): UseMoviesReturn {
         }
       }
 
+      // TMDB or CSV catalog mode
       const res = await fetchMovies({
         hindi_only: current.languageFilter === 'hindi',
         pages: 5,
         source: 'auto',
-        tmdbApiKey: (current.tmdbApiKey ?? '').trim() || undefined,
+        tmdbApiKey,
+        era: current.era,
+        difficulty: current.popularityTier,
       })
       await cacheMovies(res.movies)
       buildPool(res.movies, res.source, cacheKey, true)
@@ -265,11 +291,7 @@ export function useMovies(): UseMoviesReturn {
     } finally {
       setLoading(false)
     }
-  }, [
-    fetchAndPopulate,
-    hydrateQueueFromDexie,
-    shouldUseAi,
-  ])
+  }, [fetchAndPopulate, hydrateQueueFromDexie, shouldUseAi])
 
   // Initial load
   useEffect(() => {
@@ -281,7 +303,7 @@ export function useMovies(): UseMoviesReturn {
     init().catch(console.error)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Re-load per-settings queue when filters change.
+  // Re-load per-settings queue when filters change
   useEffect(() => {
     if (!hasInitializedRef.current) return
     ensureMoviesForCurrentSettings().catch(console.error)

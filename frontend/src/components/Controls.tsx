@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { Play, SkipForward, RotateCcw, ThumbsUp } from 'lucide-react'
+import { Play, SkipForward, RotateCcw, ThumbsUp, ArrowRight } from 'lucide-react'
 import type { GameState, GameSettings } from '@/types'
 
 interface ControlsProps {
@@ -8,6 +8,7 @@ interface ControlsProps {
   onGenerate: () => void
   onSkip: () => void
   onGotIt: () => void
+  onNextMovie: () => void
   onReset: () => void
   moviePoolSize: number
 }
@@ -18,12 +19,14 @@ const Controls: FC<ControlsProps> = ({
   onGenerate,
   onSkip,
   onGotIt,
+  onNextMovie,
   onReset,
   moviePoolSize,
 }) => {
   const { phase, skipsRemaining } = game
   const isIdle = phase === 'idle'
   const isPlaying = phase === 'playing'
+  const isBetween = phase === 'between'
   const isFinished = phase === 'finished'
 
   const canSkip =
@@ -47,7 +50,17 @@ const Controls: FC<ControlsProps> = ({
           <Play className="w-5 h-5 fill-current" />
           {isFinished ? 'Play Again' : 'Generate Movie'}
         </button>
+      ) : isBetween ? (
+        /* ── Between-movies transition ── */
+        <button
+          onClick={onNextMovie}
+          className="w-full py-4 rounded-xl font-bold text-lg tracking-wide bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-900 transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2"
+        >
+          Next Movie
+          <ArrowRight className="w-5 h-5" />
+        </button>
       ) : (
+        /* ── Playing ── */
         <div className="flex gap-3">
           {/* Skip */}
           <button
@@ -70,7 +83,7 @@ const Controls: FC<ControlsProps> = ({
         </div>
       )}
 
-      {/* Reset button (shown during play / finished) */}
+      {/* Reset button (shown during play / between / finished) */}
       {!isIdle && (
         <button
           onClick={onReset}

@@ -41,13 +41,18 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
         difficulty = "medium"
     tmdb_id_raw = row.get("TMDB_ID", "").strip()
     tmdb_id = int(tmdb_id_raw) if tmdb_id_raw.isdigit() else None
+    title = row.get("MOVIE_TITLE", "").strip()
+    vote_count_raw = row.get("VOTE_COUNT", "").strip()
+    vote_count = int(vote_count_raw) if vote_count_raw.isdigit() else 0
     return {
-        "id": row.get("MOVIE_ID", "").strip() or str(tmdb_id) if tmdb_id else "",
-        "title": row.get("MOVIE_TITLE", "").strip(),
+        "id": row.get("MOVIE_ID", "").strip() or (str(tmdb_id) if tmdb_id else ""),
+        "title": title,
         "year": year,
         "language": lang,
         "original_language": lang,
         "popularity": popularity,
+        "vote_count": vote_count,
+        "word_count": len(title.split()),
         "poster_path": poster,
         "source": "csv",
         "era": _era_from_year(year),

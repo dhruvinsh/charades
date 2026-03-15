@@ -1,6 +1,6 @@
 /**
  * Dexie (IndexedDB) schema for Charades.
- * Stores movies locally to minimize TMDB API calls.
+ * Stores movies locally to minimise TMDB/OpenAI API calls.
  */
 import Dexie, { type EntityTable } from 'dexie'
 import type { Movie } from '@/types'
@@ -13,6 +13,7 @@ interface PlayedMovie {
   id?: number
   movieId: string
   sessionId: string
+  action: 'got_it' | 'skipped' | 'timeout'
   playedAt: number // unix ms
 }
 
@@ -31,6 +32,12 @@ class CharadesDB extends Dexie {
     this.version(1).stores({
       movies: 'id, era, language, popularity, source, cachedAt',
       playHistory: '++id, movieId, sessionId, playedAt',
+      settings: 'key',
+    })
+    // v2: add action field to play history
+    this.version(2).stores({
+      movies: 'id, era, language, popularity, source, cachedAt',
+      playHistory: '++id, movieId, sessionId, action, playedAt',
       settings: 'key',
     })
   }
@@ -58,18 +65,37 @@ export async function getCachedMovies(): Promise<Movie[]> {
 export async function hasFreshCache(): Promise<boolean> {
   const cutoff = Date.now() - CACHE_TTL_MS
   const count = await db.movies.where('cachedAt').above(cutoff).count()
-  return count > 50 // require at least 50 movies
+  return count > 50
 }
 
 /** Record a movie as played in this session */
-export async function recordPlayed(movieId: string, sessionId: string): Promise<void> {
-  await db.playHistory.add({ movieId, sessionId, playedAt: Date.now() })
+export async function recordPlayed(
+  movieId: string,
+  sessionId: string,
+  action: 'got_it' | 'skipped' | 'timeout' = 'got_it',
+): Promise<void> {
+  await db.playHistory.add({ movieId, sessionId, action, playedAt: Date.now() })
 }
 
 /** Get IDs of all movies seen in the current session */
 export async function getSessionPlayedIds(sessionId: string): Promise<Set<string>> {
   const records = await db.playHistory.where('sessionId').equals(sessionId).toArray()
   return new Set(records.map((r) => r.movieId))
+}
+
+/**
+ * Get distinct movie IDs played (with specific actions) in the last N days.
+ * Used to pass as exclude_ids to the AI generate endpoint.
+ */
+export async function getRecentlyPlayedIds(
+  daysBack = 30,
+  actions: Array<'got_it' | 'skipped' | 'timeout'> = ['got_it'],
+): Promise<string[]> {
+  const cutoff = Date.now() - daysBack * 24 * 60 * 60 * 1000
+  const actionSet = new Set(actions)
+  const records = await db.playHistory.where('playedAt').above(cutoff).toArray()
+  const ids = new Set(records.filter((r) => actionSet.has(r.action)).map((r) => r.movieId))
+  return [...ids]
 }
 
 /** Clear play history older than 7 days */

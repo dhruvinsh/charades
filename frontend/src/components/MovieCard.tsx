@@ -1,13 +1,12 @@
 import type { FC } from 'react'
-import { Film, Eye, EyeOff } from 'lucide-react'
+import { Film, Eye, EyeOff, CheckCircle2 } from 'lucide-react'
 import type { Movie, GameSettings } from '@/types'
 
 interface MovieCardProps {
   movie: Movie | null
-  phase: 'idle' | 'playing' | 'paused' | 'finished'
+  phase: 'idle' | 'playing' | 'paused' | 'between' | 'finished'
   settings: GameSettings
   totalSeen: number
-  /** For progressive AI hints: time left and total timer seconds */
   timeLeft?: number
   totalTime?: number
 }
@@ -37,9 +36,10 @@ const MovieCard: FC<MovieCardProps> = ({
   const isEmpty = !movie
   const isIdle = phase === 'idle'
   const isFinished = phase === 'finished'
+  const isBetween = phase === 'between'
 
   const wordCount = movie ? movie.title.split(/\s+/).filter(Boolean).length : 0
-  const showHints = settings.hintsEnabled && !isIdle && !isEmpty
+  const showHints = settings.hintsEnabled && !isIdle && !isEmpty && !isBetween
   const hasAiHints = showHints && movie?.ai_hints && totalTime > 0
   const elapsedRatio = hasAiHints ? (totalTime - timeLeft) / totalTime : 0
   const showTagline = hasAiHints && elapsedRatio >= 0.25 && movie.ai_hints?.tagline
@@ -54,7 +54,9 @@ const MovieCard: FC<MovieCardProps> = ({
           className="absolute inset-0 bg-cover bg-center scale-110"
           style={{
             backgroundImage: `url(${TMDB_IMG_BASE}${movie.poster_path})`,
-            filter: 'blur(20px) brightness(0.25)',
+            filter: isBetween
+              ? 'blur(20px) brightness(0.15)'
+              : 'blur(20px) brightness(0.25)',
           }}
         />
       )}
@@ -69,8 +71,24 @@ const MovieCard: FC<MovieCardProps> = ({
           </div>
         )}
 
-        {/* Title area */}
-        {isIdle ? (
+        {/* ── Between phase: celebration overlay ── */}
+        {isBetween && movie ? (
+          <div className="text-center space-y-3 py-2">
+            <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto animate-bounce" />
+            <p className="text-emerald-300 text-sm font-semibold tracking-widest uppercase">
+              Got it!
+            </p>
+            <p className="text-xl font-bold text-white leading-snug px-2">
+              {movie.title}
+            </p>
+            {movie.year && (
+              <p className="text-xs text-slate-400">{movie.year}</p>
+            )}
+            <p className="text-xs text-slate-500 mt-1">
+              Press <strong className="text-amber-400">Next Movie</strong> when ready
+            </p>
+          </div>
+        ) : isIdle ? (
           <div className="text-center">
             <Film className="w-12 h-12 text-amber-400/40 mx-auto mb-3" />
             <p className="text-slate-400 text-sm">Press Generate to get a movie</p>

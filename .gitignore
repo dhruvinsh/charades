@@ -46,3 +46,5 @@ Thumbs.db
 *.swp
 *.swo
 .cursor/hooks/state/continual-learning.json
+data/*.db
+data/

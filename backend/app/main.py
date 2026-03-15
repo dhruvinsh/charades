@@ -11,6 +11,7 @@ from flask_cors import CORS
 
 from app.config import Config
 from app.routes.health import health_bp
+from app.routes.history import history_bp
 from app.routes.movies import movies_bp
 
 load_dotenv()
@@ -50,6 +51,16 @@ def create_app(config: Config | None = None) -> Flask:
     # Register blueprints
     app.register_blueprint(health_bp)
     app.register_blueprint(movies_bp)
+    app.register_blueprint(history_bp)
+
+    # Eagerly initialise the SQLite database schema on startup
+    with app.app_context():
+        try:
+            from app.services.db import get_connection
+            get_connection()
+        except Exception as exc:
+            import logging as _logging
+            _logging.getLogger(__name__).warning("SQLite init failed: %s", exc)
 
     # Serve the Vite SPA (production)
     if _FRONTEND_DIST.exists():
