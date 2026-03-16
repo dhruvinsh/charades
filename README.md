@@ -21,19 +21,19 @@ A **Bollywood charades** game — generates random Bollywood and Indian regional
 - **Sound effects** — audio cues on round start and round end
 - **Full randomization** — Fisher-Yates shuffle, play-history deduplication per session (stored in IndexedDB)
 - **Docker** — single `docker compose up --build` deploys backend + Nginx-served frontend
-- **Multi-arch images** — CI builds `linux/amd64` and `linux/arm64` on every release tag
+- **Multi-arch images** — CI builds `linux/amd64` on every release tag
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Backend | Python 3.12 + Flask 3 + uv |
-| Frontend | Vite 7 + React 19 + TypeScript + Tailwind CSS v4 |
-| State | Zustand 5 (settings persisted to `localStorage`) |
-| Cache | Dexie.js 4 (IndexedDB — movies, play history) |
-| PWA | vite-plugin-pwa 1 + Workbox (cache-first static, network-first API) |
-| Deploy | Docker Compose — backend (Gunicorn) + frontend (Nginx) |
-| CI/CD | GitHub Actions → GHCR on `v*` semver tags |
+| Layer    | Technology                                                          |
+| -------- | ------------------------------------------------------------------- |
+| Backend  | Python 3.12 + Flask 3 + uv                                          |
+| Frontend | Vite 7 + React 19 + TypeScript + Tailwind CSS v4                    |
+| State    | Zustand 5 (settings persisted to `localStorage`)                    |
+| Cache    | Dexie.js 4 (IndexedDB — movies, play history)                       |
+| PWA      | vite-plugin-pwa 1 + Workbox (cache-first static, network-first API) |
+| Deploy   | Docker Compose — backend (Gunicorn) + frontend (Nginx)              |
+| CI/CD    | GitHub Actions → GHCR on `v*` semver tags                           |
 
 ## Quick Start (Docker)
 
@@ -113,37 +113,37 @@ npm run build      # production build → frontend/dist/
 
 ## API Routes
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/health` | Liveness check — returns `{"status": "ok"}` |
-| `GET` | `/api/movies` | Fetch a batch of movies (see params below) |
-| `GET` | `/api/movies/random` | Fetch a single random movie |
+| Method | Path                 | Description                                 |
+| ------ | -------------------- | ------------------------------------------- |
+| `GET`  | `/health`            | Liveness check — returns `{"status": "ok"}` |
+| `GET`  | `/api/movies`        | Fetch a batch of movies (see params below)  |
+| `GET`  | `/api/movies/random` | Fetch a single random movie                 |
 
 ### `GET /api/movies` query parameters
 
-| Param | Default | Description |
-|---|---|---|
-| `hindi_only` | `false` | `1` / `true` / `yes` to restrict to Hindi (`hi`) only |
-| `pages` | `5` | TMDB pages to fetch (1 page = 20 movies, max `10`) |
-| `sort_by` | `popularity.desc` | TMDB sort field |
-| `source` | `auto` | `auto` tries TMDB then CSV; `csv` forces CSV; `tmdb` forces TMDB |
+| Param        | Default           | Description                                                      |
+| ------------ | ----------------- | ---------------------------------------------------------------- |
+| `hindi_only` | `false`           | `1` / `true` / `yes` to restrict to Hindi (`hi`) only            |
+| `pages`      | `5`               | TMDB pages to fetch (1 page = 20 movies, max `10`)               |
+| `sort_by`    | `popularity.desc` | TMDB sort field                                                  |
+| `source`     | `auto`            | `auto` tries TMDB then CSV; `csv` forces CSV; `tmdb` forces TMDB |
 
 TMDB API key resolution order: `X-TMDB-Key` request header → `TMDB_API_KEY` env var.
 
 ## Environment Variables
 
-| Variable | Required | Description |
-|---|---|---|
-| `SECRET_KEY` | Yes | Flask session secret — generate with `python3 -c "import secrets; print(secrets.token_hex(32))"` |
-| `TMDB_API_KEY` | No | Server-side TMDB key. Get a free key at [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api). Omit to use CSV fallback. |
-| `TMDB_LANGUAGES` | No | Pipe-separated ISO 639-1 language codes (default: `hi|ta|te|ml`) |
-| `TMDB_PAGES_PER_BATCH` | No | Pages fetched per batch, max `10` (default: `5`) |
-| `FLASK_ENV` | No | `development` enables debug mode (default: `production`) |
-| `CORS_ORIGINS` | No | Comma-separated allowed CORS origins (default: `http://localhost:5173`) |
+| Variable               | Required | Description                                                                                                                               |
+| ---------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | ---- |
+| `SECRET_KEY`           | Yes      | Flask session secret — generate with `python3 -c "import secrets; print(secrets.token_hex(32))"`                                          |
+| `TMDB_API_KEY`         | No       | Server-side TMDB key. Get a free key at [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api). Omit to use CSV fallback. |
+| `TMDB_LANGUAGES`       | No       | Pipe-separated ISO 639-1 language codes (default: `hi                                                                                     | ta  | te  | ml`) |
+| `TMDB_PAGES_PER_BATCH` | No       | Pages fetched per batch, max `10` (default: `5`)                                                                                          |
+| `FLASK_ENV`            | No       | `development` enables debug mode (default: `production`)                                                                                  |
+| `CORS_ORIGINS`         | No       | Comma-separated allowed CORS origins (default: `http://localhost:5173`)                                                                   |
 
 ## Releases
 
-Docker image is automatically published to GHCR on semver tags (`v*`). Both `linux/amd64` and `linux/arm64` platforms are built.
+Docker image is automatically published to GHCR on semver tags (`v*`). Only `linux/amd64` platforms are built.
 
 ```bash
 docker pull ghcr.io/dhruvinsh/charades:latest
